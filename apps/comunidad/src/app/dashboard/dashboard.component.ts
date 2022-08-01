@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Session } from '@supabase/supabase-js';
+import { SiteNavigationService } from '../site-navigation/site-navigation.service';
 
 @Component({
   selector: 'comunidad-dashboard',
@@ -8,6 +8,10 @@ import { Session } from '@supabase/supabase-js';
 })
 export class DashboardComponent {
   title = 'comunidad';
-  currentRoute = 'Daily Entry';
+  constructor(private readonly siteNav: SiteNavigationService) {
+  }
 
+  get currentPage () {
+    return this.siteNav.currentPage.name;
+  }
 }

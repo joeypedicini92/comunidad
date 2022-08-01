@@ -6,12 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./text-entry.component.scss'],
 })
 export class TextEntryComponent  {
-  titleInput = '';
+  titleInput = this.getCurrentDateDisplay();
   textInput = '';
 
   constructor() {}
 
   onCreateClick() {
     console.log(this.titleInput, this.textInput);
+  }
+
+  getCurrentDateDisplay() {
+    const date = new Date();
+    return date.toDateString();
   }
 }

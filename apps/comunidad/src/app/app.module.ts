@@ -10,6 +10,7 @@ import { AccountComponent } from './account/account.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SiteNavigationComponent } from './site-navigation/site-navigation.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SiteNavigationComponent } from './site-navigation/site-navigation.compo
     AccountComponent,
     DashboardComponent,
     SiteNavigationComponent,
+    NotFoundComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [],
