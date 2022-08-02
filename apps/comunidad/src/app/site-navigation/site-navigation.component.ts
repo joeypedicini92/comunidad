@@ -29,6 +29,10 @@ export class SiteNavigationComponent  {
     {
       name: 'My Profile',
       route: 'profile'
+    },
+    {
+      name: 'Contacts',
+      route: 'contacts'
     }
   ]
 
