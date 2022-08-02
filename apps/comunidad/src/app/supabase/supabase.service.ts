@@ -12,7 +12,7 @@ export interface Profile {
   providedIn: 'root'
 })
 export class SupabaseService {
-  private supabase: SupabaseClient;
+  protected supabase: SupabaseClient;
 
   constructor() {
     this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey);

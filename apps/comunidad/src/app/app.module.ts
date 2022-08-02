@@ -11,6 +11,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SiteNavigationComponent } from './site-navigation/site-navigation.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { MyJournalComponent } from './my-journal/my-journal.component';
+import { DadFeedComponent } from './dad-feed/dad-feed.component';
+import { PostCardComponent } from './post-card/post-card.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -22,8 +27,16 @@ import { NotFoundComponent } from './not-found/not-found.component';
     DashboardComponent,
     SiteNavigationComponent,
     NotFoundComponent,
+    MyJournalComponent,
+    DadFeedComponent,
+    PostCardComponent,
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule],
+  imports: [BrowserModule, FormsModule, AppRoutingModule, ServiceWorkerModule.register('ngsw-worker.js', {
+  enabled: environment.production,
+  // Register the ServiceWorker as soon as the application is stable
+  // or after 30 seconds (whichever comes first).
+  registrationStrategy: 'registerWhenStable:30000'
+})],
   providers: [],
   bootstrap: [AppComponent],
 })
