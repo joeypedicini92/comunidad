@@ -18,3 +18,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMUNIDADDIES }}'
           channelId: live
           projectId: comunidaddies
+          entryPoint: "./apps/comunidad"
