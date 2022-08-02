@@ -2,6 +2,8 @@
 
 # Comunidad
 
+You can view Project Oriented Documentation [here](https://joeypedicini.notion.site/joeypedicini/ComuniDAD-App-d4d724bb6b4e4fd3a79f2d4218ef14ec).
+
 This project was generated using [Nx](https://nx.dev).
 
 <p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
