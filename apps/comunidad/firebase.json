@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/apps/comunidad",
+    "public": "../../dist/apps/comunidad",
     "ignore": [
       "firebase.json",
       "**/.*",
