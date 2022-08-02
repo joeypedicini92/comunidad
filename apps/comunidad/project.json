@@ -5,7 +5,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/comunidad",
         "index": "apps/comunidad/src/index.html",
@@ -17,8 +19,12 @@
           "apps/comunidad/src/favicon.ico",
           "apps/comunidad/src/assets"
         ],
-        "styles": ["apps/comunidad/src/styles.scss"],
-        "scripts": []
+        "styles": [
+          "apps/comunidad/src/styles.scss"
+        ],
+        "scripts": [],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/comunidad/ngsw-config.json"
       },
       "configurations": {
         "production": {
@@ -82,7 +88,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/comunidad"],
+      "outputs": [
+        "coverage/apps/comunidad"
+      ],
       "options": {
         "jestConfig": "apps/comunidad/jest.config.ts",
         "passWithNoTests": true
