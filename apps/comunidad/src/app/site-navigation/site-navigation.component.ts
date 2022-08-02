@@ -33,10 +33,20 @@ export class SiteNavigationComponent  {
   ]
 
   currentPage: Page;
+  userName = '';
+  userEmail = '';
 
   constructor(private readonly router: Router, private readonly supabase: SupabaseService, private siteNav: SiteNavigationService) {
     this.currentPage = this.appPages[0];
     this.goToRoute(this.currentPage.route);
+    this.getUserDetails();
+
+  }
+
+  async getUserDetails() {
+    const {data: profile, error, status} = await this.supabase.profile;
+    this.userEmail = this.supabase.session?.user?.email || '';
+    this.userName = profile.username;
   }
 
   goToRoute(route: string) {
