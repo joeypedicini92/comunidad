@@ -17,6 +17,7 @@ import { PostCardComponent } from './post-card/post-card.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ContactsComponent } from './contacts/contacts.component';
+import { AccountEditComponent } from './account/account-edit/account-edit.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ContactsComponent } from './contacts/contacts.component';
     DadFeedComponent,
     PostCardComponent,
     ContactsComponent,
+    AccountEditComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountEditComponent } from './account/account-edit/account-edit.component';
 import { AccountComponent } from './account/account.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { DadFeedComponent } from './dad-feed/dad-feed.component';
@@ -11,7 +12,9 @@ import { TextEntryComponent } from './text-entry/text-entry.component';
 const routes: Routes = [
   { path: '', component: DashboardComponent, children:
     [
-      { path: 'profile', component: AccountComponent },
+      { path: 'profile', component: AccountComponent, children: [
+        { path: 'edit', component: AccountEditComponent },
+      ] },
       { path: 'contacts', component: ContactsComponent },
       { path: 'daily-entry', component: TextEntryComponent },
       { path: 'my-journal', component: MyJournalComponent },

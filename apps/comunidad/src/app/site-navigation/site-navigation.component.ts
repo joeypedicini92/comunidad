@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import {SupabaseService} from "../supabase/supabase.service";
 import { Page, SiteNavigationService } from './site-navigation.service';
 
@@ -36,15 +36,20 @@ export class SiteNavigationComponent implements AfterViewInit {
     }
   ]
 
-  currentPage: Page;
+  currentPage?: Page;
   userName = '';
   userEmail = '';
 
   constructor(private readonly router: Router, private readonly supabase: SupabaseService, private siteNav: SiteNavigationService) {
-    this.currentPage = this.appPages[0];
-    this.goToRoute(this.currentPage.route);
     this.getUserDetails();
-
+    router.events.forEach((event) => {
+      if (event instanceof NavigationEnd) {
+        const currentPage = this.getCurrentPage(event.url?.replace('/', ''));
+        if(currentPage) {
+          this.currentPage = currentPage;
+        }
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -66,9 +71,16 @@ export class SiteNavigationComponent implements AfterViewInit {
   }
 
   goToRoute(route: string) {
-    this.currentPage = this.appPages.find(page => page.route === route) || this.personalPages.find(page => page.route === route) || this.appPages[0];
-    this.siteNav.currentPage = this.currentPage;
-    this.router.navigate([this.currentPage.route]);
+    const currentPage = this.getCurrentPage(route);
+    if (currentPage) {
+      this.currentPage = currentPage;
+      this.siteNav.currentPage = this.currentPage;
+      this.router.navigate([this.currentPage.route]);
+    }
+  }
+
+  private getCurrentPage(route: string) {
+    return this.appPages.find(page => page.route === route) || this.personalPages.find(page => page.route === route);
   }
 
   signOut() {
