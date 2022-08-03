@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {SupabaseService} from "../supabase/supabase.service";
 import { Page, SiteNavigationService } from './site-navigation.service';
@@ -8,7 +8,7 @@ import { Page, SiteNavigationService } from './site-navigation.service';
   templateUrl: './site-navigation.component.html',
   styleUrls: ['./site-navigation.component.scss'],
 })
-export class SiteNavigationComponent  {
+export class SiteNavigationComponent implements AfterViewInit {
   menuOpen = false;
   appPages: Page[] = [
     {
@@ -45,6 +45,18 @@ export class SiteNavigationComponent  {
     this.goToRoute(this.currentPage.route);
     this.getUserDetails();
 
+  }
+
+  ngAfterViewInit() {
+    const target = document.querySelector('#profile-dropdown') as HTMLElement;
+
+    document.addEventListener('click', (event) => {
+      const withinBoundaries = event.composedPath().includes(target)
+
+      if (!withinBoundaries) {
+        this.menuOpen = false;
+      }
+    })
   }
 
   async getUserDetails() {
