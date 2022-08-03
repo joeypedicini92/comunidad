@@ -24,7 +24,7 @@ import {Profile, SupabaseService} from "../supabase/supabase.service";
     </div>
   </dl>
 </div>
-
+<button [routerLink]="'edit'">Edit</button>
   `
 })
 export class AccountComponent implements OnInit {
