@@ -12,9 +12,8 @@ import { TextEntryComponent } from './text-entry/text-entry.component';
 const routes: Routes = [
   { path: '', component: DashboardComponent, children:
     [
-      { path: 'profile', component: AccountComponent, children: [
-        { path: 'edit', component: AccountEditComponent },
-      ] },
+      { path: 'profile/edit', component: AccountEditComponent },
+      { path: 'profile', component: AccountComponent },
       { path: 'contacts', component: ContactsComponent },
       { path: 'daily-entry', component: TextEntryComponent },
       { path: 'my-journal', component: MyJournalComponent },
