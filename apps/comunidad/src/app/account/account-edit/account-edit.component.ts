@@ -8,9 +8,15 @@ import { Profile, SupabaseService } from '../../supabase/supabase.service';
 })
 export class AccountEditComponent implements OnInit {
   loading = false;
-  profile: Profile | undefined;
+  profile: Profile;
 
-  constructor(private readonly supabase: SupabaseService) { }
+  constructor(private readonly supabase: SupabaseService) {
+    this.profile = {
+      username: '',
+      email: '',
+      avatar_url: '',
+    };
+  }
 
   get session() {
     return this.supabase.session;
@@ -39,10 +45,10 @@ export class AccountEditComponent implements OnInit {
     }
   }
 
-  async updateProfile(username: string, website: string, avatar_url: string = '') {
+  async updateProfile(username: string, email: string, avatar_url: string = '') {
     try {
       this.loading = true;
-      await this.supabase.updateProfile({username, website, avatar_url});
+      await this.supabase.updateProfile({username, email, avatar_url});
     } catch (error: any) {
       alert(error.message);
     } finally {
@@ -50,7 +56,7 @@ export class AccountEditComponent implements OnInit {
     }
   }
 
-  async signOut() {
-    await this.supabase.signOut();
+  submit() {
+    this.updateProfile(this.profile.username, this.profile.email, this.profile.avatar_url);
   }
 }

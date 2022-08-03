@@ -59,19 +59,4 @@ export class AccountComponent implements OnInit {
       this.loading = false;
     }
   }
-
-  async updateProfile(username: string, website: string, avatar_url: string = '') {
-    try {
-      this.loading = true;
-      await this.supabase.updateProfile({username, website, avatar_url});
-    } catch (error: any) {
-      alert(error.message);
-    } finally {
-      this.loading = false;
-    }
-  }
-
-  async signOut() {
-    await this.supabase.signOut();
-  }
 }

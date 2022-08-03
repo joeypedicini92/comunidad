@@ -4,7 +4,7 @@ import {environment} from "../../environments/environment";
 
 export interface Profile {
   username: string;
-  website: string;
+  email: string;
   avatar_url: string;
 }
 
@@ -29,7 +29,7 @@ export class SupabaseService {
   get profile() {
     return this.supabase
       .from('profiles')
-      .select(`username, website, avatar_url`)
+      .select(`username, email, avatar_url`)
       .eq('id', this.user?.id)
       .single();
   }
