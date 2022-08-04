@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Contact, GetMyContactsQueries } from '../supabase/queries/get-my-contacts';
+import { Contact, SupabaseService } from '../supabase/supabase.service';
 
 @Component({
   selector: 'comunidad-contacts',
@@ -7,10 +7,10 @@ import { Contact, GetMyContactsQueries } from '../supabase/queries/get-my-contac
   styleUrls: ['./contacts.component.scss'],
 })
 export class ContactsComponent implements OnInit {
-  constructor(private readonly getMyContacts: GetMyContactsQueries) {}
+  constructor(private readonly supabase: SupabaseService) {}
   contacts: Contact[] = [];
   async ngOnInit() {
-    const data = await this.getMyContacts.getMyContacts();
+    const data = await this.supabase.getMyContacts();
 
     this.contacts = data || [];
   }

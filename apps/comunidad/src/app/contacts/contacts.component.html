@@ -28,8 +28,8 @@
             <tbody class="divide-y divide-gray-200 bg-white">
               <tr *ngFor="let contact of contacts" class="divide-x divide-gray-200">
                 <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm font-medium text-gray-900 sm:pl-6">{{contact.name}}</td>
-                <td class="whitespace-nowrap p-4 text-sm text-gray-500">(216) 870-8437</td>
-                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><input type="checkbox" class=" left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"></td>
+                <td class="whitespace-nowrap p-4 text-sm text-gray-500">{{contact.phone_number}}</td>
+                <td class="whitespace-nowrap p-4 text-sm text-gray-500"><input type="checkbox" class=" left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6" [(ngModel)]="contact.enabled_text_updates"></td>
                 <td class="whitespace-nowrap p-4 text-sm text-gray-500">lindsay.walton@example.com</td>
                 <td class="whitespace-nowrap py-4 pl-4 pr-4 text-sm text-gray-500 sm:pr-6"><input type="checkbox" class=" left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"></td>
                 <td class="whitespace-nowrap p-4 text-sm text-gray-500">2457 Shillingham Ct., Powell, OH 43065</td>

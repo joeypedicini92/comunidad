@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetMyJournalQueries, Post } from '../supabase/queries/get-my-journal';
+import { SupabaseService, Post } from '../supabase/supabase.service';
 
 @Component({
   selector: 'comunidad-my-journal',
@@ -7,10 +7,10 @@ import { GetMyJournalQueries, Post } from '../supabase/queries/get-my-journal';
   styleUrls: ['./my-journal.component.scss'],
 })
 export class MyJournalComponent implements OnInit {
-  constructor(private readonly getMyJournal: GetMyJournalQueries) {}
+  constructor(private readonly supabase: SupabaseService) {}
   posts: Post[] = [];
   async ngOnInit() {
-    const data = await this.getMyJournal.getMyJournal();
+    const data = await this.supabase.getMyJournal();
 
     this.posts = data || [];
   }

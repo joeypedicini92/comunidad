@@ -8,6 +8,26 @@ export interface Profile {
   avatar_url: string;
 }
 
+export interface Contact {
+  id: string;
+  name: string;
+  phone_number: string;
+  created_at: Date;
+  enabled_text_updates: boolean;
+//TODO add other columns
+}
+
+export interface Post {
+  id: string;
+  title: string;
+  body: string;
+  created_at: Date;
+  image_url?: string;
+  user_id?: string;
+  body_permission: number;
+  image_permission: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -66,5 +86,23 @@ export class SupabaseService {
     return this.supabase.storage
       .from('avatars')
       .upload(filePath, file);
+  }
+
+
+  async getDadFeed() {
+    // TODO this 40 is a magic number, also it should consider connections and close connections
+    const res = await this.supabase.from<Post>('posts').select().gte('body_permission', 40).order('created_at', {ascending: false});
+    return res.body;
+  }
+
+  async getMyContacts() {
+    const res = await this.supabase.from<Contact>('contacts').select();
+    return res.body;
+  }
+
+
+  async getMyJournal() {
+    const res = await this.supabase.from<Post>('posts').select().eq('user_id', this.user?.id).order('created_at', {ascending: false});
+    return res.body;
   }
 }

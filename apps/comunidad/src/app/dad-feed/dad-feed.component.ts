@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GetDadFeedQueries } from '../supabase/queries/get-dad-feed';
-import { Post } from '../supabase/queries/get-my-journal';
+import { SupabaseService } from '../supabase/supabase.service';
+import { Post } from '../supabase/supabase.service';
 
 @Component({
   selector: 'comunidad-dad-feed',
@@ -8,10 +8,10 @@ import { Post } from '../supabase/queries/get-my-journal';
   styleUrls: ['./dad-feed.component.scss'],
 })
 export class DadFeedComponent implements OnInit {
-  constructor(private readonly getDadFeed: GetDadFeedQueries) {}
+  constructor(private readonly supabase: SupabaseService) {}
   posts: Post[] = [];
   async ngOnInit() {
-    const data = await this.getDadFeed.getDadFeed();
+    const data = await this.supabase.getDadFeed();
 
     this.posts = data || [];
   }
