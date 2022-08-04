@@ -18,10 +18,10 @@ export interface Contact {
 }
 
 export interface Post {
-  id: string;
+  id?: string;
   title: string;
   body: string;
-  created_at: Date;
+  created_at?: Date;
   image_url?: string;
   user_id?: string;
   body_permission: number;
@@ -103,6 +103,21 @@ export class SupabaseService {
 
   async getMyJournal() {
     const res = await this.supabase.from<Post>('posts').select().eq('user_id', this.user?.id).order('created_at', {ascending: false});
+    return res.body;
+  }
+
+  async createPost(post: Post) {
+    const res = await this.supabase.from<Post>('posts').insert(post).single();
+    return res.body;
+  }
+
+  async updatePost(post: Post) {
+    const res = await this.supabase.from<Post>('posts').update(post).single();
+    return res.body;
+  }
+
+  async getPostByTitle(title: string) {
+    const res = await this.supabase.from<Post>('posts').select().eq('title', title).eq('user_id', this.user?.id).maybeSingle();
     return res.body;
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Post, SupabaseService } from '../supabase/supabase.service';
 
 @Component({
   selector: 'comunidad-text-entry',
@@ -6,13 +7,38 @@ import { Component } from '@angular/core';
   styleUrls: ['./text-entry.component.scss'],
 })
 export class TextEntryComponent  {
-  titleInput = this.getCurrentDateDisplay();
-  textInput = '';
+  post!: Post;
 
-  constructor() {}
+  constructor(private readonly supabase: SupabaseService) {
+    const todaysDate = this.getCurrentDateDisplay();
+    supabase.getPostByTitle(todaysDate).then(post => {
+      if (post) {
+        this.post = post;
+      }
+    }).finally(() => {
+      if (!this.post) {
+        this.post = this.createDefaultPost();
+      }
+    });
+
+  }
+
+  createDefaultPost() {
+     return {
+      body: '',
+      title: this.getCurrentDateDisplay(),
+      body_permission: 50,
+      image_permission: 50,
+      user_id: this.supabase.user?.id,
+    }
+  }
 
   onCreateClick() {
-    console.log(this.titleInput, this.textInput);
+    if (this.post.id) {
+      this.supabase.updatePost(this.post);
+    } else {
+      this.supabase.createPost(this.post);
+    }
   }
 
   getCurrentDateDisplay() {
