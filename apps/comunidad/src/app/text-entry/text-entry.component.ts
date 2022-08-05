@@ -8,6 +8,7 @@ import { Post, SupabaseService } from '../supabase/supabase.service';
 })
 export class TextEntryComponent  {
   post!: Post;
+  file?: File;
 
   constructor(private readonly supabase: SupabaseService) {
     const todaysDate = this.getCurrentDateDisplay();
@@ -33,12 +34,33 @@ export class TextEntryComponent  {
     }
   }
 
-  onCreateClick() {
-    if (this.post.id) {
-      this.supabase.updatePost(this.post);
-    } else {
-      this.supabase.createPost(this.post);
+  async onSaveClick() {
+    const uploadFile = async () => {
+      if (this.file) {
+        return this.supabase.uploadFileForPost(this.post, this.file)
+      } else {
+        return Promise.resolve();
+      }
     }
+    const createPost = () => {
+      if (this.post.id) {
+        this.supabase.updatePost(this.post);
+      } else {
+        this.supabase.createPost(this.post);
+      }
+    }
+
+    const imgUrl = await uploadFile();
+    if(imgUrl) {
+      const url = await this.supabase.getFileUrl(imgUrl) || undefined;
+      this.post.image_url = url;
+    }
+    createPost();
+  }
+
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    this.file = file;
   }
 
   getCurrentDateDisplay() {

@@ -120,4 +120,21 @@ export class SupabaseService {
     const res = await this.supabase.from<Post>('posts').select().eq('title', title).eq('user_id', this.user?.id).maybeSingle();
     return res.body;
   }
+
+  async uploadFileForPost(post: Post, file: File) {
+    const fileName = `${this.user?.id}/${Date.now()}.${file.name.split('.').pop()}`;
+    await this.supabase.storage
+      .from('post-images')
+      .upload(fileName, file);
+    return fileName;
+  }
+
+  async getFileUrl(path: string) {
+    const { publicURL, error } = await this.supabase
+      .storage
+      .from('post-images')
+      .getPublicUrl(path);
+
+      return publicURL;
+  }
 }
