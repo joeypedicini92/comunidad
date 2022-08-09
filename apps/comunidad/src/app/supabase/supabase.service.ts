@@ -9,12 +9,14 @@ export interface Profile {
 }
 
 export interface Contact {
-  id: string;
+  id?: string;
   name: string;
-  phone_number: string;
-  created_at: Date;
-  enabled_text_updates: boolean;
-//TODO add other columns
+  email: string;
+  user_id?: string;
+  // phone_number: string;
+  created_at?: Date;
+  // enabled_text_updates: boolean;
+  //TODO add other columns
 }
 
 export interface Post {
@@ -29,13 +31,16 @@ export interface Post {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SupabaseService {
   protected supabase: SupabaseClient;
 
   constructor() {
-    this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey);
+    this.supabase = createClient(
+      environment.supabaseUrl,
+      environment.supabaseKey
+    );
   }
 
   get user() {
@@ -54,12 +59,14 @@ export class SupabaseService {
       .single();
   }
 
-  authChanges(callback: (event: AuthChangeEvent, session: Session | null) => void) {
+  authChanges(
+    callback: (event: AuthChangeEvent, session: Session | null) => void
+  ) {
     return this.supabase.auth.onAuthStateChange(callback);
   }
 
   signIn(email: string) {
-    return this.supabase.auth.signIn({email});
+    return this.supabase.auth.signIn({ email });
   }
 
   signOut() {
@@ -70,8 +77,8 @@ export class SupabaseService {
     const update = {
       ...profile,
       id: this.user?.id,
-      updated_at: new Date()
-    }
+      updated_at: new Date(),
+    };
 
     return this.supabase.from('profiles').upsert(update, {
       returning: 'minimal', // Don't return the value after inserting
@@ -83,15 +90,16 @@ export class SupabaseService {
   }
 
   uploadAvatar(filePath: string, file: File) {
-    return this.supabase.storage
-      .from('avatars')
-      .upload(filePath, file);
+    return this.supabase.storage.from('avatars').upload(filePath, file);
   }
-
 
   async getDadFeed() {
     // TODO this 40 is a magic number, also it should consider connections and close connections
-    const res = await this.supabase.from<Post>('posts').select().gte('body_permission', 40).order('created_at', {ascending: false});
+    const res = await this.supabase
+      .from<Post>('posts')
+      .select()
+      .gte('body_permission', 40)
+      .order('created_at', { ascending: false });
     return res.body;
   }
 
@@ -100,9 +108,12 @@ export class SupabaseService {
     return res.body;
   }
 
-
   async getMyJournal() {
-    const res = await this.supabase.from<Post>('posts').select().eq('user_id', this.user?.id).order('created_at', {ascending: false});
+    const res = await this.supabase
+      .from<Post>('posts')
+      .select()
+      .eq('user_id', this.user?.id)
+      .order('created_at', { ascending: false });
     return res.body;
   }
 
@@ -117,24 +128,36 @@ export class SupabaseService {
   }
 
   async getPostByTitle(title: string) {
-    const res = await this.supabase.from<Post>('posts').select().eq('title', title).eq('user_id', this.user?.id).maybeSingle();
+    const res = await this.supabase
+      .from<Post>('posts')
+      .select()
+      .eq('title', title)
+      .eq('user_id', this.user?.id)
+      .maybeSingle();
     return res.body;
   }
 
   async uploadFileForPost(post: Post, file: File) {
-    const fileName = `${this.user?.id}/${Date.now()}.${file.name.split('.').pop()}`;
-    await this.supabase.storage
-      .from('post-images')
-      .upload(fileName, file);
+    const fileName = `${this.user?.id}/${Date.now()}.${file.name
+      .split('.')
+      .pop()}`;
+    await this.supabase.storage.from('post-images').upload(fileName, file);
     return fileName;
   }
 
   async getFileUrl(path: string) {
-    const { publicURL, error } = await this.supabase
-      .storage
+    const { publicURL, error } = await this.supabase.storage
       .from('post-images')
       .getPublicUrl(path);
 
-      return publicURL;
+    return publicURL;
+  }
+
+  async addContact(contact: Contact) {
+    const res = await this.supabase
+      .from<Contact>('contacts')
+      .insert(contact)
+      .single();
+    return res.body;
   }
 }
