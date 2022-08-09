@@ -21,7 +21,5 @@ export class ContactsService {
 
   async addContact(contact: Contact) {
     await this.supabase.addContact(contact);
-
-    this.getContacts();
   }
 }
