@@ -3,6 +3,14 @@
 // This enables autocomplete, go to definition, etc.
 
 import { serve } from 'https://deno.land/std@0.131.0/http/server.ts';
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@^1.33.2';
+
+const supabaseClient = createClient(
+  // Supabase API URL - env var exported by default when deployed.
+  Deno.env.get('SUPABASE_URL') ?? '',
+  // Supabase API ANON KEY - env var exported by default when deployed.
+  Deno.env.get('SUPABASE_ANON_KEY') ?? ''
+);
 
 const EMAIL_URL = 'rest.clicksend.com/v3/email/send';
 const EMAIL_ID = 22752;
@@ -13,7 +21,7 @@ const EMAIL_USERID = 'joey.pedicini@gmail.com';
 console.log('Hello from send-post-email!');
 
 serve(async (req) => {
-  const { subject, body, to } = await req.json();
+  const { subject, body, to, postId } = await req.json();
 
   const clickSendBody = {
     to: [
@@ -40,6 +48,15 @@ serve(async (req) => {
       body: JSON.stringify(clickSendBody),
     }
   );
+
+  supabaseClient.auth.setAuth(
+    req.headers.get('Authorization')!.replace('Bearer ', '')
+  );
+
+  await supabaseClient
+    .from('emails')
+    .insert({ email_data: clickSendBody, post_id: postId })
+    .single();
 
   console.log(result);
 
