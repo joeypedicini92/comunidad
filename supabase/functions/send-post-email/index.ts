@@ -5,7 +5,7 @@
 import { serve } from 'https://deno.land/std@0.131.0/http/server.ts';
 
 const EMAIL_URL = 'rest.clicksend.com/v3/email/send';
-const EMAIL_ID = 22681;
+const EMAIL_ID = 22752;
 const EMAIL_NAME = 'Supabase';
 const EMAIL_PASSWORD = 'D59DCC6B-1CC2-A5C9-EA16-73119FEE3744';
 const EMAIL_USERID = 'joey.pedicini@gmail.com';
