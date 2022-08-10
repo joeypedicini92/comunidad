@@ -21,9 +21,8 @@
     <label for="description" class="sr-only">Description</label>
     <div class="grow-wrap">
       <textarea  [(ngModel)]="post.body" rows="2" name="description" id="description" onInput="this.parentNode.dataset.replicatedValue = this.value" class="block w-full border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Write a description..."></textarea>
-    </div>
-    <div *ngIf="post.image_url" class="group aspect-w-2 aspect-h-1 rounded-lg overflow-hidden sm:aspect-h-1 sm:aspect-w-1 sm:row-span-2">
-      <img class="object-center object-cover" [src]="post.image_url">
+      <img [hidden]="!file" id="uploadedImg" src="#" />
+      <img *ngIf="post.image_url && !file" [src]="post.image_url">
     </div>
     <!-- Spacer element to match the height of the toolbar -->
     <div aria-hidden="true">
@@ -34,6 +33,8 @@
 
     </div>
   </div>
+
+  <!-- I AM CURRENTLY TRYING TO MERGE post.image_url and file.src -->
 
   <div class="absolute bottom-0 inset-x-px">
     <div class="border-t border-gray-200 px-2 py-2 flex justify-between items-center space-x-3 sm:px-3">
