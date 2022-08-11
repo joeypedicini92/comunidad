@@ -45,7 +45,9 @@ export class SiteNavigationService {
     }
     router.events.forEach((event) => {
       if (event instanceof NavigationEnd) {
-        const currentPage = this.getCurrentPage(event.url?.replace('/', ''));
+        const currentPage = this.getCurrentPage(
+          event.urlAfterRedirects?.replace('/', '')
+        );
         if(currentPage) {
           this.currentPage = currentPage;
         }

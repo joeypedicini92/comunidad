@@ -10,17 +10,20 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { TextEntryComponent } from './text-entry/text-entry.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, children:
-    [
+  {
+    path: '',
+    component: DashboardComponent,
+    children: [
       { path: 'profile/edit', component: AccountEditComponent },
       { path: 'profile', component: AccountComponent },
       { path: 'contacts', component: ContactsComponent },
       { path: 'daily-entry', component: TextEntryComponent },
       { path: 'my-journal', component: MyJournalComponent },
-      { path: 'dad-feed', component: DadFeedComponent }
+      { path: 'dad-feed', component: DadFeedComponent },
+      { path: '', redirectTo: 'daily-entry', pathMatch: 'full' },
     ],
   },
-  { path: '**', component: NotFoundComponent }
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
