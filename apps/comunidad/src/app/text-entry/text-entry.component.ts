@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Post, SupabaseService } from '../supabase/supabase.service';
+import { ClickSendService } from '../click-send/click-send.service';
 
 @Component({
   selector: 'comunidad-text-entry',
@@ -8,10 +9,13 @@ import { Post, SupabaseService } from '../supabase/supabase.service';
 })
 export class TextEntryComponent {
   post!: Post;
-  file?: File;
+  file?: any;
   uploadFile?: string;
 
-  constructor(private readonly supabase: SupabaseService) {
+  constructor(
+    private readonly supabase: SupabaseService,
+    private readonly clickSend: ClickSendService
+  ) {
     const todaysDate = this.getCurrentDateDisplay();
     supabase
       .getPostByTitle(todaysDate)
@@ -51,9 +55,9 @@ export class TextEntryComponent {
     };
     const createPost = () => {
       if (this.post.id) {
-        this.supabase.updatePost(this.post);
+        return this.supabase.updatePost(this.post);
       } else {
-        this.supabase.createPost(this.post);
+        return this.supabase.createPost(this.post);
       }
     };
 
@@ -64,7 +68,11 @@ export class TextEntryComponent {
       const url = (await this.supabase.getFileUrl(imgUrl)) || undefined;
       this.post.image_url = url;
     }
-    createPost();
+    await createPost();
+    await this.clickSend.sendEmailForPost(
+      this.post,
+      URL.createObjectURL(this.file)
+    );
   }
 
   onFileChange(event: any) {

@@ -20,7 +20,20 @@ const EMAIL_USERID = 'joey.pedicini@gmail.com';
 
 console.log('Hello from send-post-email!');
 
+// TODO clean this up move CORS stuff to a separate file
 serve(async (req) => {
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Expose-Headers': 'Content-Length, X-JSON',
+        'Access-Control-Allow-Headers':
+          'apikey,X-Client-Info, Content-Type, Authorization, Accept, Accept-Language, X-Authorization',
+      },
+    });
+  }
+  console.log('post request being handled');
   const { subject, body, to, postId } = await req.json();
 
   const clickSendBody = {
@@ -49,19 +62,26 @@ serve(async (req) => {
     }
   );
 
-  supabaseClient.auth.setAuth(
-    req.headers.get('Authorization')!.replace('Bearer ', '')
-  );
-
-  await supabaseClient
-    .from('emails')
-    .insert({ email_data: clickSendBody, post_id: postId })
-    .single();
+  try {
+    await supabaseClient
+      .from('emails')
+      .insert({ email_data: clickSendBody, post_id: postId })
+      .single();
+  } catch (error) {
+    console.error(error);
+  }
 
   console.log(result);
 
   return new Response(JSON.stringify(result), {
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST',
+      'Access-Control-Expose-Headers': 'Content-Length, X-JSON',
+      'Access-Control-Allow-Headers':
+        'apikey,X-Client-Info, Content-Type, Authorization, Accept, Accept-Language, X-Authorization',
+    },
   });
 });
 
