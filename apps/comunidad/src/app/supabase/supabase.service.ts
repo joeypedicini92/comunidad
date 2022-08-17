@@ -93,13 +93,14 @@ export class SupabaseService {
     return this.supabase.storage.from('avatars').upload(filePath, file);
   }
 
-  async getDadFeed() {
+  async getDadFeed(from = 0, to = 20) {
     // TODO this 40 is a magic number, also it should consider connections and close connections
     const res = await this.supabase
       .from<Post>('posts')
       .select()
       .gte('body_permission', 40)
-      .order('created_at', { ascending: false });
+      .order('created_at', { ascending: false })
+      .range(from, to);
     return res.body;
   }
 
@@ -108,12 +109,13 @@ export class SupabaseService {
     return res.body;
   }
 
-  async getMyJournal() {
+  async getMyJournal(from = 0, to = 20) {
     const res = await this.supabase
       .from<Post>('posts')
       .select()
       .eq('user_id', this.user?.id)
-      .order('created_at', { ascending: false });
+      .order('created_at', { ascending: false })
+      .range(from, to);
     return res.body;
   }
 

@@ -7,11 +7,26 @@ import { SupabaseService, Post } from '../supabase/supabase.service';
   styleUrls: ['./my-journal.component.scss'],
 })
 export class MyJournalComponent implements OnInit {
+  start = 0;
+  end = 5;
+  rate = 5;
+  displayShowMoreButton = true;
+
   constructor(private readonly supabase: SupabaseService) {}
   posts: Post[] = [];
   async ngOnInit() {
-    const data = await this.supabase.getMyJournal();
+    const data = await this.supabase.getMyJournal(this.start, this.end);
 
     this.posts = data || [];
+  }
+
+  async showMore() {
+    this.start += this.end;
+    this.end += this.rate;
+    const data = await this.supabase.getMyJournal(this.start, this.end);
+    if (!data || !data.length) {
+      this.displayShowMoreButton = false;
+    }
+    this.posts.push(...(data || []));
   }
 }
