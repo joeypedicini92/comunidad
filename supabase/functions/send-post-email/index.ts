@@ -4,6 +4,7 @@
 
 import { serve } from 'https://deno.land/std@0.131.0/http/server.ts';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@^1.33.2';
+import { encode as base64Encode } from 'https://deno.land/std@0.82.0/encoding/base64.ts';
 
 const supabaseClient = createClient(
   // Supabase API URL - env var exported by default when deployed.
@@ -34,7 +35,12 @@ serve(async (req) => {
     });
   }
   console.log('post request being handled');
-  const { subject, body, to, postId } = await req.json();
+  const { subject, body, to, postId, imageUrl } = await req.json();
+
+  const response = await fetch(imageUrl);
+  const buffer = await response.arrayBuffer();
+
+  let returnedB64 = base64Encode(buffer);
 
   const clickSendBody = {
     to: [
@@ -49,6 +55,15 @@ serve(async (req) => {
     },
     subject: subject,
     body: body,
+    attachments: [
+      {
+        content: returnedB64,
+        type: 'image/jpeg',
+        filename: `${postId}.jpg`,
+        disposition: 'inline',
+        content_id: 'test',
+      },
+    ],
   };
 
   const result = await fetch(

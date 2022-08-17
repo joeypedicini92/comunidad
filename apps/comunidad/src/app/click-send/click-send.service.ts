@@ -11,13 +11,14 @@ const SEND_EMAIL_URL =
   providedIn: 'root',
 })
 export class ClickSendService {
-  async sendEmailForPost(post: Post, imgData?: string) {
+  async sendEmailForPost(post: Post) {
     const result = await axios.post(
       SEND_EMAIL_URL,
       {
         subject: post.title,
         body: post.body,
         postId: post.id,
+        imageUrl: post.image_url,
       },
       { headers: { Authorization: 'Bearer ' + environment.supabaseKey } }
     );

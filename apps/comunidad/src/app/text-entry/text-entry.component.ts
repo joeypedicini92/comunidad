@@ -69,10 +69,7 @@ export class TextEntryComponent {
       this.post.image_url = url;
     }
     await createPost();
-    await this.clickSend.sendEmailForPost(
-      this.post,
-      URL.createObjectURL(this.file)
-    );
+    await this.clickSend.sendEmailForPost(this.post);
   }
 
   onFileChange(event: any) {
