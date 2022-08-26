@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import {AuthChangeEvent, createClient, Session, SupabaseClient} from '@supabase/supabase-js';
+import {
+  AuthChangeEvent,
+  createClient,
+  Session,
+  SupabaseClient,
+  UserIdentity,
+} from '@supabase/supabase-js';
 import {environment} from "../../environments/environment";
 
 export interface Profile {
@@ -41,6 +47,21 @@ export class SupabaseService {
       environment.supabaseUrl,
       environment.supabaseKey
     );
+  }
+
+  get avatarUrl() {
+    const identities: UserIdentity[] = this.user?.identities || [];
+    for (let i = 0; i < identities.length; i++) {
+      if (identities[i].identity_data) {
+        const url =
+          identities[i].identity_data['avatar_url'] ||
+          identities[i].identity_data['picture'];
+        if (url)
+          return `https://www.gravatar.com/avatar/00000000000000000000000000000000?d=${url}`;
+      }
+    }
+
+    return 'https://www.gravatar.com/avatar/00000000000000000000000000000000';
   }
 
   get user() {

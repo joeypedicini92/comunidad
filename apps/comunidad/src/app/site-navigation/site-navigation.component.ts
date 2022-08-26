@@ -14,29 +14,36 @@ export class SiteNavigationComponent implements AfterViewInit {
   personalPages = personalPages;
   get currentPage() {
     return this.siteNav.currentPage;
-  };
+  }
   userName = '';
   userEmail = '';
 
-  constructor(private readonly router: Router, private readonly supabase: SupabaseService, private siteNav: SiteNavigationService) {
-    this.getUserDetails();
+  get avatarUrl() {
+    return this.supabase.avatarUrl;
+  }
 
+  constructor(
+    private readonly router: Router,
+    private readonly supabase: SupabaseService,
+    private siteNav: SiteNavigationService
+  ) {
+    this.getUserDetails();
   }
 
   ngAfterViewInit() {
     const target = document.querySelector('#profile-dropdown') as HTMLElement;
 
     document.addEventListener('click', (event) => {
-      const withinBoundaries = event.composedPath().includes(target)
+      const withinBoundaries = event.composedPath().includes(target);
 
       if (!withinBoundaries) {
         this.menuOpen = false;
       }
-    })
+    });
   }
 
   async getUserDetails() {
-    const {data: profile, error, status} = await this.supabase.profile;
+    const { data: profile, error, status } = await this.supabase.profile;
     this.userEmail = this.supabase.session?.user?.email || '';
     this.userName = profile.username;
   }
