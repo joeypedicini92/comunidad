@@ -70,7 +70,10 @@ export class SupabaseService {
   }
 
   signInNotion() {
-    return this.supabase.auth.signIn({ provider: 'notion' });
+    return this.supabase.auth.signIn(
+      { provider: 'notion' },
+      { redirectTo: `${window.location.origin}/daily-entry` }
+    );
   }
 
   signOut() {
