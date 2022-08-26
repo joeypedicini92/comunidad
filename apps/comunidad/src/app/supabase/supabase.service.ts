@@ -69,6 +69,10 @@ export class SupabaseService {
     return this.supabase.auth.signIn({ email });
   }
 
+  signInNotion() {
+    return this.supabase.auth.signIn({ provider: 'notion' });
+  }
+
   signOut() {
     return this.supabase.auth.signOut();
   }
