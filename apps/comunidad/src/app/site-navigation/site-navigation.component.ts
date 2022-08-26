@@ -9,7 +9,8 @@ import { appPages, Page, personalPages, SiteNavigationService } from './site-nav
   styleUrls: ['./site-navigation.component.scss'],
 })
 export class SiteNavigationComponent implements AfterViewInit {
-  menuOpen = false;
+  userMenuOpen = false;
+  mainMenuOpen = false;
   appPages = appPages;
   personalPages = personalPages;
   get currentPage() {
@@ -37,7 +38,7 @@ export class SiteNavigationComponent implements AfterViewInit {
       const withinBoundaries = event.composedPath().includes(target);
 
       if (!withinBoundaries) {
-        this.menuOpen = false;
+        this.userMenuOpen = false;
       }
     });
   }
