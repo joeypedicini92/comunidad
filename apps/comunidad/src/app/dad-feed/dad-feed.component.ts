@@ -24,7 +24,7 @@ export class DadFeedComponent implements OnInit {
   async showMore() {
     this.start += this.end;
     this.end += this.rate;
-    const data = await this.supabase.getMyJournal(this.start, this.end);
+    const data = await this.supabase.getDadFeed(this.start, this.end);
     if (!data || !data.length) {
       this.displayShowMoreButton = false;
     }
