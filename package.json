@@ -19,6 +19,7 @@
     "@angular/forms": "~14.1.0",
     "@angular/platform-browser": "~14.1.0",
     "@angular/platform-browser-dynamic": "~14.1.0",
+    "@angular/pwa": "^14.2.1",
     "@angular/router": "~14.1.0",
     "@angular/service-worker": "~14.1.0",
     "@notionhq/client": "^2.1.1",

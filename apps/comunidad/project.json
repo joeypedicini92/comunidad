@@ -17,7 +17,8 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/comunidad/src/favicon.ico",
-          "apps/comunidad/src/assets"
+          "apps/comunidad/src/assets",
+          "apps/comunidad/src/manifest.webmanifest"
         ],
         "styles": [
           "apps/comunidad/src/styles.scss"
