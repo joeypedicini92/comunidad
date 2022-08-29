@@ -70,7 +70,8 @@ export class TextEntryComponent {
         const url = (await this.supabase.getFileUrl(imgUrl)) || undefined;
         this.post.image_url = url;
       }
-      await createPost();
+      const result = await createPost();
+      this.post.id = result?.id;
       await this.clickSend.sendEmailForPost(this.post);
     } catch (e) {
       console.log(e);
