@@ -11,6 +11,7 @@ export class TextEntryComponent {
   post!: Post;
   file?: any;
   uploadFile?: string;
+  isLoading = false;
 
   constructor(
     private readonly supabase: SupabaseService,
@@ -46,6 +47,7 @@ export class TextEntryComponent {
   }
 
   async onSaveClick() {
+    this.isLoading = true;
     const uploadFile = async () => {
       if (this.file) {
         return this.supabase.uploadFileForPost(this.post, this.file);
@@ -62,14 +64,19 @@ export class TextEntryComponent {
     };
 
     // IMPLEMENTATION
-
-    const imgUrl = await uploadFile();
-    if (imgUrl) {
-      const url = (await this.supabase.getFileUrl(imgUrl)) || undefined;
-      this.post.image_url = url;
+    try {
+      const imgUrl = await uploadFile();
+      if (imgUrl) {
+        const url = (await this.supabase.getFileUrl(imgUrl)) || undefined;
+        this.post.image_url = url;
+      }
+      await createPost();
+      await this.clickSend.sendEmailForPost(this.post);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.isLoading = false;
     }
-    await createPost();
-    await this.clickSend.sendEmailForPost(this.post);
   }
 
   onFileChange(event: any) {
