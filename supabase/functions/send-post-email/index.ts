@@ -16,7 +16,7 @@ const supabaseClient = createClient(
 const EMAIL_URL = 'rest.clicksend.com/v3/email/send';
 const EMAIL_ID = 22752;
 const EMAIL_NAME = 'Comunidaddies';
-const EMAIL_PASSWORD = 'D59DCC6B-1CC2-A5C9-EA16-73119FEE3744';
+const EMAIL_PASSWORD = Deno.env.get('CLICK_SEND_PASSWORD');
 const EMAIL_USERID = 'joey.pedicini@gmail.com';
 
 console.log('Hello from send-post-email!');
@@ -37,18 +37,13 @@ serve(async (req) => {
   console.log('post request being handled');
   const { subject, body, to, postId, imageUrl } = await req.json();
 
-  const response = await fetch(imageUrl);
-  const buffer = await response.arrayBuffer();
-
-  let returnedB64 = base64Encode(buffer);
-
-  const clickSendBody = {
-    to: [
+  const clickSendBody: any = {
+    to,
+    bcc: [
       {
         email: 'joey@comunidaddies.com',
         name: 'Joey',
       },
-      ...to,
     ],
     from: {
       email_address_id: EMAIL_ID,
@@ -56,7 +51,15 @@ serve(async (req) => {
     },
     subject: subject,
     body: body,
-    attachments: [
+  };
+
+  if (imageUrl) {
+    const response = await fetch(imageUrl);
+    const buffer = await response.arrayBuffer();
+
+    let returnedB64 = base64Encode(buffer);
+
+    clickSendBody.attachments = [
       {
         content: returnedB64,
         type: 'image/jpeg',
@@ -64,19 +67,31 @@ serve(async (req) => {
         disposition: 'inline',
         content_id: 'test',
       },
-    ],
-  };
+    ];
+  }
 
-  const result = await fetch(
-    `https://${EMAIL_USERID}:${EMAIL_PASSWORD}@${EMAIL_URL}`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(clickSendBody),
-    }
+  console.log(
+    'poopy data',
+    clickSendBody,
+    `https://${EMAIL_USERID}:${EMAIL_PASSWORD}@${EMAIL_URL}`
   );
+
+  let result;
+
+  try {
+    result = await fetch(
+      `https://${EMAIL_USERID}:${EMAIL_PASSWORD}@${EMAIL_URL}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(clickSendBody),
+      }
+    );
+  } catch (error) {
+    console.error('error sending clickSend request', error);
+  }
 
   try {
     await supabaseClient
