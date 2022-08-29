@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import { Post, SupabaseService } from '../supabase/supabase.service';
+import { Post, Contact, SupabaseService } from '../supabase/supabase.service';
 import { environment } from '../../environments/environment';
 
 // TODO put this in an environment file
@@ -12,8 +12,7 @@ const SEND_EMAIL_URL =
 })
 export class ClickSendService {
   constructor(private supabase: SupabaseService) {}
-  async sendEmailForPost(post: Post) {
-    const contacts = await this.supabase.getMyContacts();
+  async sendEmailForPost(post: Post, contacts: Contact[]) {
     const result = await axios.post(
       SEND_EMAIL_URL,
       {

@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
+import { PillListComponent } from './pill-list/pill-list.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
     ContactsComponent,
     AccountEditComponent,
     AddContactComponent,
+    PillListComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
   ],
   providers: [],

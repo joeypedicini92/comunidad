@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Post, SupabaseService } from '../supabase/supabase.service';
+import { Contact, Post, SupabaseService } from '../supabase/supabase.service';
 import { ClickSendService } from '../click-send/click-send.service';
+import { PillListComponent } from '../pill-list/pill-list.component';
 
 @Component({
   selector: 'comunidad-text-entry',
@@ -8,12 +9,15 @@ import { ClickSendService } from '../click-send/click-send.service';
   styleUrls: ['./text-entry.component.scss'],
 })
 export class TextEntryComponent {
+  contacts: Contact[] = [];
   post!: Post;
   file?: any;
   uploadFile?: string;
   isLoading = false;
   todaysDate: string;
   @ViewChild('textarea', { static: false }) textarea!: ElementRef;
+  @ViewChild('selectedContacts', { static: false })
+  selectedContacts!: PillListComponent;
 
   constructor(
     private readonly supabase: SupabaseService,
@@ -40,6 +44,10 @@ export class TextEntryComponent {
           this.onInput(this.textarea.nativeElement);
         }, 0);
       });
+
+    supabase.getMyContacts().then((contacts) => {
+      this.contacts = contacts || [];
+    });
   }
 
   get imageToDisplay() {
@@ -87,7 +95,10 @@ export class TextEntryComponent {
       }
       const result = await createPost();
       this.post.id = result?.id;
-      await this.clickSend.sendEmailForPost(this.post);
+      await this.clickSend.sendEmailForPost(
+        this.post,
+        this.selectedContacts.items
+      );
     } catch (e) {
       console.log(e);
     } finally {

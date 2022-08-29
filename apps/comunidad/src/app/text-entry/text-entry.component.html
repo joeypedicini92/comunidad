@@ -14,6 +14,11 @@
   }
   ```
 -->
+<div class="border-b border-gray-200 pb-5">
+  <h3 class="text-lg font-medium leading-6 text-gray-900">Email Recipients</h3>
+  <p class="mt-2 max-w-4xl text-sm text-gray-500 pb-5">Below are your contacts who will receive an email of your post. Update your contacts <a href="/contacts">here.</a></p>
+  <comunidad-pill-list #selectedContacts [items]="contacts" [display]="'name'"></comunidad-pill-list>
+</div>
 <form class="relative" *ngIf="post">
   <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
     <label for="title" class="sr-only">Title</label>
