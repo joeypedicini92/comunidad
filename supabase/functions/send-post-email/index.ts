@@ -15,7 +15,7 @@ const supabaseClient = createClient(
 
 const EMAIL_URL = 'rest.clicksend.com/v3/email/send';
 const EMAIL_ID = 22752;
-const EMAIL_NAME = 'Supabase';
+const EMAIL_NAME = 'Comunidaddies';
 const EMAIL_PASSWORD = 'D59DCC6B-1CC2-A5C9-EA16-73119FEE3744';
 const EMAIL_USERID = 'joey.pedicini@gmail.com';
 
@@ -45,9 +45,10 @@ serve(async (req) => {
   const clickSendBody = {
     to: [
       {
-        email: 'joey.pedicini@gmail.com',
-        name: 'Joey Pedicini',
+        email: 'joey@comunidaddies.com',
+        name: 'Joey',
       },
+      ...to,
     ],
     from: {
       email_address_id: EMAIL_ID,

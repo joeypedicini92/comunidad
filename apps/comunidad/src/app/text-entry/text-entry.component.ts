@@ -13,7 +13,7 @@ export class TextEntryComponent {
   uploadFile?: string;
   isLoading = false;
   todaysDate: string;
-  @ViewChild('textarea') textarea!: ElementRef;
+  @ViewChild('textarea', { static: false }) textarea!: ElementRef;
 
   constructor(
     private readonly supabase: SupabaseService,
