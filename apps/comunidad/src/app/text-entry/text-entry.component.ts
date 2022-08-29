@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Post, SupabaseService } from '../supabase/supabase.service';
 import { ClickSendService } from '../click-send/click-send.service';
 
@@ -12,23 +12,33 @@ export class TextEntryComponent {
   file?: any;
   uploadFile?: string;
   isLoading = false;
+  todaysDate: string;
+  @ViewChild('textarea') textarea!: ElementRef;
 
   constructor(
     private readonly supabase: SupabaseService,
     private readonly clickSend: ClickSendService
   ) {
-    const todaysDate = this.getCurrentDateDisplay();
+    this.todaysDate = this.getCurrentDateDisplay();
     supabase
-      .getPostByTitle(todaysDate)
+      .getPostByTitle(this.todaysDate)
       .then((post) => {
         if (post) {
-          this.post = post;
+          this.post = {
+            ...post,
+            body:
+              window.localStorage.getItem(`textarea-${this.todaysDate}`) ||
+              post.body,
+          };
         }
       })
       .finally(() => {
         if (!this.post) {
           this.post = this.createDefaultPost();
         }
+        setTimeout(() => {
+          this.onInput(this.textarea.nativeElement);
+        }, 0);
       });
   }
 
@@ -36,9 +46,14 @@ export class TextEntryComponent {
     return this.post.image_url || 'assets/images/default-image.png';
   }
 
+  onInput(textarea: any) {
+    textarea.parentNode.dataset.replicatedValue = textarea.value;
+    window.localStorage.setItem(`textarea-${this.todaysDate}`, textarea.value);
+  }
+
   createDefaultPost() {
     return {
-      body: '',
+      body: window.localStorage.getItem(`textarea-${this.todaysDate}`) || '',
       title: this.getCurrentDateDisplay(),
       body_permission: 50,
       image_permission: 50,
