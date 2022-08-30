@@ -20,15 +20,15 @@
   <comunidad-pill-list #selectedContacts [items]="contacts" [display]="'name'"></comunidad-pill-list>
 </div>
 <form class="relative" *ngIf="post">
-  <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
+  <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden ">
     <label for="title" class="sr-only">Title</label>
     <input disabled [(ngModel)]="post.title" type="text" name="title" id="title" class="block w-full border-0 pt-2.5 text-lg font-medium placeholder-gray-500 focus:ring-0" placeholder="Title">
     <label for="description" class="sr-only">Description</label>
-    <div class="grow-wrap">
-      <textarea id="textarea" #textarea [(ngModel)]="post.body" rows="2" name="description" id="description" (input)="onInput(textarea)" class="block w-full border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Write a description..."></textarea>
+
+      <textarea id="textarea" #textarea [(ngModel)]="post.body" rows="4" class=" border-transparent focus:border-transparent focus:ring-0 border-none focus:border-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white" placeholder="Your message..."></textarea>
       <img [hidden]="!file" id="uploadedImg" src="#" />
       <img *ngIf="post.image_url && !file" [src]="post.image_url">
-    </div>
+
     <!-- Spacer element to match the height of the toolbar -->
     <div aria-hidden="true">
       <div class="py-2">

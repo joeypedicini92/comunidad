@@ -40,9 +40,6 @@ export class TextEntryComponent {
         if (!this.post) {
           this.post = this.createDefaultPost();
         }
-        setTimeout(() => {
-          this.onInput(this.textarea.nativeElement);
-        }, 0);
       });
 
     supabase.getMyContacts().then((contacts) => {
@@ -52,11 +49,6 @@ export class TextEntryComponent {
 
   get imageToDisplay() {
     return this.post.image_url || 'assets/images/default-image.png';
-  }
-
-  onInput(textarea: any) {
-    textarea.parentNode.dataset.replicatedValue = textarea.value;
-    window.localStorage.setItem(`textarea-${this.todaysDate}`, textarea.value);
   }
 
   createDefaultPost() {
