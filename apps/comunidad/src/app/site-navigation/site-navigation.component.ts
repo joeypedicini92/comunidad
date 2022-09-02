@@ -44,7 +44,7 @@ export class SiteNavigationComponent implements AfterViewInit {
   }
 
   async getUserDetails() {
-    const { data: profile, error, status } = await this.supabase.profile;
+    const { data: profile, error, status } = await this.supabase.profile();
     this.userEmail = this.supabase.session?.user?.email || '';
     this.userName = profile.username;
   }

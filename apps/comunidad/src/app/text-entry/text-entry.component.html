@@ -25,7 +25,7 @@
     <input disabled [(ngModel)]="post.title" type="text" name="title" id="title" class="block w-full border-0 pt-2.5 text-lg font-medium placeholder-gray-500 focus:ring-0" placeholder="Title">
     <label for="description" class="sr-only">Description</label>
 
-      <textarea id="textarea" #textarea [(ngModel)]="post.body" rows="4" class=" border-transparent focus:border-transparent focus:ring-0 border-none focus:border-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white" placeholder="Your message..."></textarea>
+      <textarea id="textarea" #textarea [(ngModel)]="post.body" name="textarea" rows="4" class=" border-transparent focus:border-transparent focus:ring-0 border-none focus:border-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white" placeholder="Your message..."></textarea>
       <img [hidden]="!file" id="uploadedImg" src="#" />
       <img *ngIf="post.image_url && !file" [src]="post.image_url">
 

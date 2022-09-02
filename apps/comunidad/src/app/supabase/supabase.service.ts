@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   AuthChangeEvent,
   createClient,
+  PostgrestSingleResponse,
   Session,
   SupabaseClient,
   UserIdentity,
 } from '@supabase/supabase-js';
-import {environment} from "../../environments/environment";
+import { environment } from '../../environments/environment';
 
 export interface Profile {
   username: string;
@@ -42,7 +44,7 @@ export interface Post {
 export class SupabaseService {
   protected supabase: SupabaseClient;
 
-  constructor() {
+  constructor(private readonly router: Router) {
     this.supabase = createClient(
       environment.supabaseUrl,
       environment.supabaseKey
@@ -72,12 +74,22 @@ export class SupabaseService {
     return this.supabase.auth.session();
   }
 
-  get profile() {
-    return this.supabase
+  async profile(): Promise<PostgrestSingleResponse<any>> {
+    let profile = await this.supabase
       .from('profiles')
       .select(`username, email, avatar_url`)
       .eq('id', this.user?.id)
       .single();
+
+    if (!profile || profile.error) {
+      profile = await this.updateProfile({
+        email: this.user?.email || '',
+        username: 'NOT SET',
+        avatar_url: '',
+      });
+    }
+
+    return profile;
   }
 
   authChanges(
@@ -109,7 +121,7 @@ export class SupabaseService {
     };
 
     return this.supabase.from('profiles').upsert(update, {
-      returning: 'minimal', // Don't return the value after inserting
+      returning: 'representation', // Don't return the value after inserting
     });
   }
 
