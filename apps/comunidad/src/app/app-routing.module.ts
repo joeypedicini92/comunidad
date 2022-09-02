@@ -7,6 +7,7 @@ import { DadFeedComponent } from './dad-feed/dad-feed.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MyJournalComponent } from './my-journal/my-journal.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { PublicProfileComponent } from './public-profile/public-profile.component';
 import { TextEntryComponent } from './text-entry/text-entry.component';
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'daily-entry', pathMatch: 'full' },
     ],
   },
+  { path: 'public/:id', component: PublicProfileComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

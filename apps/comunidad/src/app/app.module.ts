@@ -20,6 +20,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { AccountEditComponent } from './account/account-edit/account-edit.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { PillListComponent } from './pill-list/pill-list.component';
+import { PublicProfileComponent } from './public-profile/public-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PillListComponent } from './pill-list/pill-list.component';
     AccountEditComponent,
     AddContactComponent,
     PillListComponent,
+    PublicProfileComponent,
   ],
   imports: [
     BrowserModule,

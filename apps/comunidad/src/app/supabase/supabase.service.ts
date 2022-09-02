@@ -149,6 +149,16 @@ export class SupabaseService {
     return res.body;
   }
 
+  async getPublicJournal(id: string, from = 0, to = 20) {
+    const res = await this.supabase
+      .from<Post>('posts')
+      .select()
+      .eq('user_id', id)
+      .order('created_at', { ascending: false })
+      .range(from, to);
+    return res.body;
+  }
+
   async getMyJournal(from = 0, to = 20) {
     const res = await this.supabase
       .from<Post>('posts')

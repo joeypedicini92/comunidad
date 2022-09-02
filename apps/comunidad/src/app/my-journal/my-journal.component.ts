@@ -11,9 +11,10 @@ export class MyJournalComponent implements OnInit {
   end = 5;
   rate = 5;
   displayShowMoreButton = true;
+  posts: Post[] = [];
 
   constructor(private readonly supabase: SupabaseService) {}
-  posts: Post[] = [];
+
   async ngOnInit() {
     const data = await this.supabase.getMyJournal(this.start, this.end);
 
