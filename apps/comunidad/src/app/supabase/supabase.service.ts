@@ -180,7 +180,7 @@ export class SupabaseService {
   }
 
   async uploadFileForPost(post: Post, file: File) {
-    const fileName = `${this.user?.id}/${Date.now()}.${file.name
+    const fileName = `${this.user?.id}/${post.title}.${file.name
       .split('.')
       .pop()}`;
     await this.supabase.storage.from('post-images').upload(fileName, file);
