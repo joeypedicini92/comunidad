@@ -140,11 +140,11 @@ export class SupabaseService {
   }
 
   async getDadFeed(from = 0, to = 20) {
-    // TODO this 40 is a magic number, also it should consider connections and close connections
     const res = await this.supabase
       .from<Post>('posts')
       .select()
-      .gte('body_permission', 40)
+      // TODO this 20 is a magic number, also it should consider connections and close connections
+      .gte('body_permission', 20)
       .order('created_at', { ascending: false })
       .range(from, to);
     return res.body;
@@ -160,6 +160,7 @@ export class SupabaseService {
       .from<Post>('posts')
       .select()
       .eq('user_id', id)
+      .gte('body_permission', 50)
       .order('created_at', { ascending: false })
       .range(from, to);
     return res.body;

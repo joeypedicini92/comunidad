@@ -71,10 +71,12 @@ export class CreatePostComponent {
       }
       const result = await createPost();
       this.post.id = result?.id;
-      await this.clickSend.sendEmailForPost(
-        this.post,
-        this.selectedContacts.items
-      );
+      if (this.post.body_permission && this.post.body_permission >= 10) {
+        await this.clickSend.sendEmailForPost(
+          this.post,
+          this.selectedContacts.items
+        );
+      }
     } catch (e) {
       console.log(e);
     } finally {

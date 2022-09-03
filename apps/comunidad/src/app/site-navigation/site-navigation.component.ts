@@ -18,6 +18,7 @@ export class SiteNavigationComponent implements AfterViewInit {
   }
   userName = '';
   userEmail = '';
+  userId = '';
 
   get avatarUrl() {
     return this.supabase.avatarUrl;
@@ -47,6 +48,7 @@ export class SiteNavigationComponent implements AfterViewInit {
     const { data: profile, error, status } = await this.supabase.profile();
     this.userEmail = this.supabase.session?.user?.email || '';
     this.userName = profile.username;
+    this.userId = this.supabase.user?.id || '';
   }
 
   goToRoute(route: string) {
