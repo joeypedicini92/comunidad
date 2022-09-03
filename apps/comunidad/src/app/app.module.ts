@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
-import { TextEntryComponent } from './text-entry/text-entry.component';
+import { DailyEntryComponent } from './daily-entry/daily-entry.component';
 import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
 import { AccountComponent } from './account/account.component';
@@ -21,12 +21,13 @@ import { AccountEditComponent } from './account/account-edit/account-edit.compon
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { PillListComponent } from './pill-list/pill-list.component';
 import { PublicProfileComponent } from './public-profile/public-profile.component';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NxWelcomeComponent,
-    TextEntryComponent,
+    DailyEntryComponent,
     AuthComponent,
     AccountComponent,
     DashboardComponent,
@@ -40,6 +41,7 @@ import { PublicProfileComponent } from './public-profile/public-profile.componen
     AddContactComponent,
     PillListComponent,
     PublicProfileComponent,
+    CreatePostComponent,
   ],
   imports: [
     BrowserModule,

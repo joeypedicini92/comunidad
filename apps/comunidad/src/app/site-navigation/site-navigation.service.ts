@@ -9,17 +9,21 @@ export interface Page {
 export const appPages: Page[] = [
   {
     name: 'Daily Entry',
-    route: 'daily-entry'
+    route: 'daily-entry',
+  },
+  {
+    name: 'New Generic Post',
+    route: 'generic-entry',
   },
   {
     name: 'My Journal',
-    route: 'my-journal'
+    route: 'my-journal',
   },
   {
     name: 'Dad Feed',
-    route: 'dad-feed'
-  }
-]
+    route: 'dad-feed',
+  },
+];
 
 export const personalPages: Page[] = [
   {

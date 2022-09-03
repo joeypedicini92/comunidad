@@ -1,47 +1,28 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Contact, Post, SupabaseService } from '../supabase/supabase.service';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ClickSendService } from '../click-send/click-send.service';
 import { PillListComponent } from '../pill-list/pill-list.component';
+import { Contact, Post, SupabaseService } from '../supabase/supabase.service';
 
 @Component({
-  selector: 'comunidad-text-entry',
-  templateUrl: './text-entry.component.html',
-  styleUrls: ['./text-entry.component.scss'],
+  selector: 'comunidad-create-post',
+  templateUrl: './create-post.component.html',
+  styleUrls: ['./create-post.component.scss'],
 })
-export class TextEntryComponent {
+export class CreatePostComponent {
   contacts: Contact[] = [];
   post!: Post;
   file?: any;
   uploadFile?: string;
   isLoading = false;
-  todaysDate: string;
   @ViewChild('textarea', { static: false }) textarea!: ElementRef;
   @ViewChild('selectedContacts', { static: false })
   selectedContacts!: PillListComponent;
 
   constructor(
-    private readonly supabase: SupabaseService,
-    private readonly clickSend: ClickSendService
+    readonly supabase: SupabaseService,
+    readonly clickSend: ClickSendService
   ) {
-    this.todaysDate = this.getCurrentDateDisplay();
-    supabase
-      .getPostByTitle(this.todaysDate)
-      .then((post) => {
-        if (post) {
-          this.post = {
-            ...post,
-            body:
-              window.localStorage.getItem(`textarea-${this.todaysDate}`) ||
-              post.body,
-          };
-        }
-      })
-      .finally(() => {
-        if (!this.post) {
-          this.post = this.createDefaultPost();
-        }
-      });
-
+    this.post = this.createDefaultPost();
     supabase.getMyContacts().then((contacts) => {
       this.contacts = contacts || [];
     });
@@ -53,8 +34,8 @@ export class TextEntryComponent {
 
   createDefaultPost() {
     return {
-      body: window.localStorage.getItem(`textarea-${this.todaysDate}`) || '',
-      title: this.getCurrentDateDisplay(),
+      body: window.localStorage.getItem(`generic-post-body`) || '',
+      title: window.localStorage.getItem(`generic-post-title`) || '',
       body_permission: 50,
       image_permission: 50,
       user_id: this.supabase.user?.id,
@@ -106,10 +87,5 @@ export class TextEntryComponent {
         ?.setAttribute('src', URL.createObjectURL(file));
       this.file = file;
     }
-  }
-
-  getCurrentDateDisplay() {
-    const date = new Date();
-    return date.toDateString();
   }
 }
