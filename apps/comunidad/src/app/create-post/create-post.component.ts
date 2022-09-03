@@ -1,7 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ClickSendService } from '../click-send/click-send.service';
 import { PillListComponent } from '../pill-list/pill-list.component';
-import { Contact, Post, SupabaseService } from '../supabase/supabase.service';
+import {
+  Contact,
+  PermissionLevel,
+  Post,
+  SupabaseService,
+} from '../supabase/supabase.service';
 
 @Component({
   selector: 'comunidad-create-post',
@@ -36,8 +41,6 @@ export class CreatePostComponent {
     return {
       body: window.localStorage.getItem(`generic-post-body`) || '',
       title: window.localStorage.getItem(`generic-post-title`) || '',
-      body_permission: 50,
-      image_permission: 50,
       user_id: this.supabase.user?.id,
     };
   }
@@ -79,6 +82,14 @@ export class CreatePostComponent {
     }
   }
 
+  isPostEnabled() {
+    return (
+      this.post.body &&
+      this.post.title &&
+      this.post.body_permission !== undefined
+    );
+  }
+
   onFileChange(event: any) {
     const file = event.target.files[0];
     if (file) {
@@ -87,5 +98,10 @@ export class CreatePostComponent {
         ?.setAttribute('src', URL.createObjectURL(file));
       this.file = file;
     }
+  }
+
+  onChangePermissionLevel(permission: PermissionLevel) {
+    this.post.body_permission = permission.permission_level;
+    this.post.image_permission = permission.permission_level;
   }
 }

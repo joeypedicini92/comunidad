@@ -22,6 +22,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { PillListComponent } from './pill-list/pill-list.component';
 import { PublicProfileComponent } from './public-profile/public-profile.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { PostPermissionInputComponent } from './post-permission-input/post-permission-input.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { CreatePostComponent } from './create-post/create-post.component';
     PillListComponent,
     PublicProfileComponent,
     CreatePostComponent,
+    PostPermissionInputComponent,
   ],
   imports: [
     BrowserModule,

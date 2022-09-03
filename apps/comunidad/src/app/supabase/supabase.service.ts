@@ -34,8 +34,14 @@ export interface Post {
   created_at?: Date;
   image_url?: string;
   user_id?: string;
-  body_permission: number;
-  image_permission: number;
+  body_permission?: number;
+  image_permission?: number;
+}
+
+export interface PermissionLevel {
+  permission_level: number;
+  permission_display: string;
+  permission_description: string;
 }
 
 @Injectable({
@@ -210,6 +216,14 @@ export class SupabaseService {
       .from<Contact>('contacts')
       .insert(contact)
       .single();
+    return res.body;
+  }
+
+  async getPostPermissionLevels() {
+    const res = await this.supabase
+      .from<PermissionLevel>('permission_levels')
+      .select()
+      .order('permission_level', { ascending: true });
     return res.body;
   }
 }

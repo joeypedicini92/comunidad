@@ -14,10 +14,13 @@
   }
   ```
 -->
-<div class="border-b border-gray-200 pb-5">
-  <h3 class="text-lg font-medium leading-6 text-gray-900">Email Recipients</h3>
-  <p class="mt-2 max-w-4xl text-sm text-gray-500 pb-5">Below are your contacts who will receive an email of your post. Update your contacts <a href="/contacts">here.</a></p>
-  <comunidad-pill-list #selectedContacts [items]="contacts" [display]="'name'"></comunidad-pill-list>
+<div class="border-b border-gray-200 pb-5 flex">
+  <div>
+    <h3 class="text-lg font-medium leading-6 text-gray-900">Email Recipients</h3>
+    <p class="mt-2 max-w-4xl text-sm text-gray-500 pb-5">Below are your contacts who will receive an email of your post. Update your contacts <a href="/contacts">here.</a></p>
+    <comunidad-pill-list #selectedContacts [items]="contacts" [display]="'name'"></comunidad-pill-list>
+  </div>
+  <comunidad-post-permission-input [preselectedPermission]="post.body_permission" class="ml-auto mt-auto" (changePermissionLevel)="onChangePermissionLevel($event)"></comunidad-post-permission-input>
 </div>
 <form class="relative" *ngIf="post">
   <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden ">
@@ -52,7 +55,7 @@
         </button>
       </div>
       <div class="flex-shrink-0">
-        <button type="button" (click)="onSaveClick()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <button [disabled]="!isPostEnabled()" type="button" (click)="onSaveClick()" class="disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           <span *ngIf="!isLoading; else loading">Post</span>
           <ng-template #loading>
             <svg role="status" class="inline mr-3 w-4 h-4 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
