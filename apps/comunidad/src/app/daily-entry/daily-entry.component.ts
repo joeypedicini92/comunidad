@@ -33,6 +33,14 @@ export class DailyEntryComponent extends CreatePostComponent {
       });
   }
 
+  override createDefaultPost() {
+    return {
+      body: window.localStorage.getItem(`generic-post-body`) || '',
+      title: this.getCurrentDateDisplay(),
+      user_id: this.supabase.user?.id,
+    };
+  }
+
   getCurrentDateDisplay() {
     const date = new Date();
     return date.toDateString();
