@@ -31,11 +31,28 @@ export class DailyEntryComponent extends CreatePostComponent {
           this.post = this.createDefaultPost();
         }
       });
+    setTimeout(() => {
+      this.post = this.createDefaultPost();
+      this.post.body = '';
+    }, this.waitForMidnight());
+  }
+
+  waitForMidnight() {
+    const now = new Date();
+    const midnight = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() + 1,
+      0,
+      0,
+      0
+    );
+    return midnight.getTime() - now.getTime();
   }
 
   override createDefaultPost() {
     return {
-      body: window.localStorage.getItem(`generic-post-body`) || '',
+      body: window.localStorage.getItem(`textarea-${this.todaysDate}`) || '',
       title: this.getCurrentDateDisplay(),
       user_id: this.supabase.user?.id,
     };
