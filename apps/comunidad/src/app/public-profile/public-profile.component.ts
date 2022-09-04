@@ -43,7 +43,7 @@ export class PublicProfileComponent implements OnInit {
   async showMore() {
     if (!this.id) return;
 
-    this.start += this.end;
+    this.start += this.end + 1;
     this.end += this.rate;
 
     const data = await this.supabase.getPublicJournal(
