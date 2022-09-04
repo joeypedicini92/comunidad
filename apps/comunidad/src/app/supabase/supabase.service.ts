@@ -147,14 +147,14 @@ export class SupabaseService {
 
   getYesterdayDate() {
     const date = new Date();
-    date.setDate(date.getDate() - 2);
-    return date.toISOString();
+    date.setDate(date.getDate() - 1);
+    return date.toLocaleDateString();
   }
 
   getTodaysDate() {
     const date = new Date();
-    date.setDate(date.getDate() - 1);
-    return date.toISOString();
+    date.setDate(date.getDate());
+    return date.toLocaleDateString();
   }
 
   async getDadFeed(from = 0, to = 20) {
