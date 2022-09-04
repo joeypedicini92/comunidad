@@ -145,12 +145,28 @@ export class SupabaseService {
     return this.supabase.storage.from('avatars').upload(filePath, file);
   }
 
+  getYesterdayDate() {
+    const date = new Date();
+    date.setDate(date.getDate() - 2);
+    return date.toISOString();
+  }
+
+  getTodaysDate() {
+    const date = new Date();
+    date.setDate(date.getDate() - 1);
+    return date.toISOString();
+  }
+
   async getDadFeed(from = 0, to = 20) {
+    const yesterday = this.getYesterdayDate();
+    const today = this.getTodaysDate();
     const res = await this.supabase
       .from<Post>('posts')
       .select(`body, title, image_url, created_at`)
       // TODO this 20 is a magic number, also it should consider connections and close connections
       .gte('body_permission', 20)
+      .lt('created_at', today)
+      .gt('created_at', yesterday)
       .order('created_at', { ascending: false })
       .range(from, to);
     return res.body;
