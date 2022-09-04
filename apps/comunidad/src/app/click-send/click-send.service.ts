@@ -24,7 +24,11 @@ export class ClickSendService {
           return { email: con.email, name: con.name };
         }),
       },
-      { headers: { Authorization: 'Bearer ' + environment.supabaseKey } }
+      {
+        headers: {
+          Authorization: 'Bearer ' + this.supabase.session?.access_token,
+        },
+      }
     );
     console.log(result);
   }

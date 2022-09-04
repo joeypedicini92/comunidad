@@ -22,6 +22,7 @@ export class CreatePostComponent {
   @ViewChild('textarea', { static: false }) textarea!: ElementRef;
   @ViewChild('selectedContacts', { static: false })
   selectedContacts!: PillListComponent;
+  writingPrompt = 'Your message...';
 
   constructor(
     readonly supabase: SupabaseService,
@@ -30,6 +31,9 @@ export class CreatePostComponent {
     this.post = this.createDefaultPost();
     supabase.getMyContacts().then((contacts) => {
       this.contacts = contacts || [];
+    });
+    supabase.getTodaysPrompt().then((prompt) => {
+      this.writingPrompt = prompt?.prompt_text || 'Your message...';
     });
   }
 

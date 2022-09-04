@@ -44,6 +44,12 @@ export interface PermissionLevel {
   permission_description: string;
 }
 
+export interface Prompt {
+  id: string;
+  date_to_display: string;
+  prompt_text: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -225,6 +231,19 @@ export class SupabaseService {
       .from<PermissionLevel>('permission_levels')
       .select()
       .order('permission_level', { ascending: true });
+    return res.body;
+  }
+
+  async getTodaysPrompt() {
+    const currentMonth = new Date().getMonth() + 1;
+    const currentDay = new Date().getDate();
+
+    const res = await this.supabase
+      .from<Prompt>('writing_prompts')
+      .select()
+      .eq('date_to_display', `2022-${currentMonth}-${currentDay}`)
+      .single();
+
     return res.body;
   }
 }
