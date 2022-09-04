@@ -148,7 +148,7 @@ export class SupabaseService {
   async getDadFeed(from = 0, to = 20) {
     const res = await this.supabase
       .from<Post>('posts')
-      .select()
+      .select(`body, title, image_url, created_at`)
       // TODO this 20 is a magic number, also it should consider connections and close connections
       .gte('body_permission', 20)
       .order('created_at', { ascending: false })
