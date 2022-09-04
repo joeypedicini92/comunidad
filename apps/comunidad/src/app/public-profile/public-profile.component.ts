@@ -13,13 +13,18 @@ export class PublicProfileComponent implements OnInit {
   rate = 5;
   displayShowMoreButton = true;
   id!: string | null;
-
+  userName = '';
   posts: Post[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private readonly supabase: SupabaseService
   ) {}
+
+  async getUserDetails() {
+    const { data: profile, error, status } = await this.supabase.profile();
+    this.userName = profile.username;
+  }
 
   async ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -32,6 +37,7 @@ export class PublicProfileComponent implements OnInit {
 
       this.posts = data || [];
     }
+    await this.getUserDetails();
   }
 
   async showMore() {
