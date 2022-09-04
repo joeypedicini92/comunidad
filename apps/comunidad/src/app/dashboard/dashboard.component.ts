@@ -21,6 +21,6 @@ export class DashboardComponent implements OnInit {
   }
 
   get currentPage() {
-    return this.siteNav.currentPage.name;
+    return this.siteNav.currentPage;
   }
 }
