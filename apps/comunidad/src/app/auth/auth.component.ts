@@ -15,17 +15,8 @@ import {SupabaseService} from "../supabase/supabase.service";
             alt="Workflow"
           />
           <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
+            Sign in or Sign Up and start journaling
           </h2>
-          <p class="mt-2 text-center text-sm text-gray-600">
-            Or
-            <a
-              href="#"
-              class="font-medium text-indigo-600 hover:text-indigo-500"
-            >
-              start your 14-day free trial
-            </a>
-          </p>
         </div>
         <form class="mt-8 space-y-6" action="#" method="POST">
           <input type="hidden" name="remember" value="true" />
