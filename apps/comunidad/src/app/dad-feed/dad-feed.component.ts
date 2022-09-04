@@ -22,7 +22,7 @@ export class DadFeedComponent implements OnInit {
   }
 
   async showMore() {
-    this.start += this.end;
+    this.start += this.end + 1;
     this.end += this.rate;
     const data = await this.supabase.getDadFeed(this.start, this.end);
     if (!data || !data.length) {
