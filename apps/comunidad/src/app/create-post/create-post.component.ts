@@ -17,7 +17,7 @@ export class CreatePostComponent {
   contacts: Contact[] = [];
   post!: Post;
   file?: any;
-  uploadFile?: string;
+
   isLoading = false;
   @ViewChild('textarea', { static: false }) textarea!: ElementRef;
   @ViewChild('selectedContacts', { static: false })
@@ -49,31 +49,26 @@ export class CreatePostComponent {
     };
   }
 
+  async uploadFile() {
+    if (this.file) {
+      return this.supabase.uploadFileForPost(this.post, this.file);
+    } else {
+      return Promise.resolve();
+    }
+  }
+  createPost() {
+    if (this.post.id) {
+      return this.supabase.updatePost(this.post);
+    } else {
+      return this.supabase.createPost(this.post);
+    }
+  }
+
   async onSaveClick() {
     this.isLoading = true;
-    const uploadFile = async () => {
-      if (this.file) {
-        return this.supabase.uploadFileForPost(this.post, this.file);
-      } else {
-        return Promise.resolve();
-      }
-    };
-    const createPost = () => {
-      if (this.post.id) {
-        return this.supabase.updatePost(this.post);
-      } else {
-        return this.supabase.createPost(this.post);
-      }
-    };
 
-    // IMPLEMENTATION
     try {
-      const imgUrl = await uploadFile();
-      if (imgUrl) {
-        const url = (await this.supabase.getFileUrl(imgUrl)) || undefined;
-        this.post.image_url = url;
-      }
-      const result = await createPost();
+      const result = await this.createPost();
       this.post.id = result?.id;
       if (this.post.body_permission && this.post.body_permission >= 10) {
         await this.clickSend.sendEmailForPost(
@@ -96,14 +91,25 @@ export class CreatePostComponent {
     );
   }
 
-  onFileChange(event: any) {
+  async onFileChange(event: any) {
     const file = event.target.files[0];
-    if (file) {
-      document
-        .getElementById('uploadedImg')
-        ?.setAttribute('src', URL.createObjectURL(file));
-      this.file = file;
+    if (!file) return;
+
+    document
+      .getElementById('uploadedImg')
+      ?.setAttribute('src', URL.createObjectURL(file));
+    this.file = file;
+
+    const imgUrl = await this.uploadFile();
+    if (imgUrl) {
+      const url = (await this.supabase.getFileUrl(imgUrl)) || undefined;
+      this.post.image_url = url;
     }
+  }
+
+  saveToLocalStorage() {
+    window.localStorage.setItem(`generic-post-body`, this.post.body);
+    window.localStorage.setItem(`generic-post-title`, this.post.title);
   }
 
   onChangePermissionLevel(permission: PermissionLevel) {

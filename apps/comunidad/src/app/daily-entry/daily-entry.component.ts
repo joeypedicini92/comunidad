@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { SupabaseService } from '../supabase/supabase.service';
+import { Post, SupabaseService } from '../supabase/supabase.service';
 import { ClickSendService } from '../click-send/click-send.service';
 import { CreatePostComponent } from '../create-post/create-post.component';
+import { isEqual } from 'lodash';
 
 @Component({
   selector: 'comunidad-daily-entry',
@@ -10,6 +11,8 @@ import { CreatePostComponent } from '../create-post/create-post.component';
 })
 export class DailyEntryComponent extends CreatePostComponent {
   todaysDate: string;
+  lastSaved = '';
+  previousPost?: Post;
 
   constructor(supabase: SupabaseService, clickSend: ClickSendService) {
     super(supabase, clickSend);
@@ -30,14 +33,21 @@ export class DailyEntryComponent extends CreatePostComponent {
         if (!this.post) {
           this.post = this.createDefaultPost();
         }
+        setTimeout(() => {
+          this.post = this.createDefaultPost();
+          this.post.body = '';
+        }, this.midnight());
+
+        setInterval(() => {
+          if (!isEqual(this.post, this.previousPost)) {
+            this.previousPost = Object.assign({}, this.post);
+            this.savePost();
+          }
+        }, 5000);
       });
-    setTimeout(() => {
-      this.post = this.createDefaultPost();
-      this.post.body = '';
-    }, this.waitForMidnight());
   }
 
-  waitForMidnight() {
+  midnight() {
     const now = new Date();
     const midnight = new Date(
       now.getFullYear(),
@@ -50,12 +60,33 @@ export class DailyEntryComponent extends CreatePostComponent {
     return midnight.getTime() - now.getTime();
   }
 
+  async savePost() {
+    this.isLoading = true;
+    try {
+      const result = await this.createPost();
+      this.post.id = result?.id;
+    } catch (e) {
+      console.log(e);
+    } finally {
+      this.isLoading = false;
+      this.lastSaved = new Date().toLocaleTimeString();
+    }
+  }
+
   override createDefaultPost() {
     return {
       body: window.localStorage.getItem(`textarea-${this.todaysDate}`) || '',
       title: this.getCurrentDateDisplay(),
       user_id: this.supabase.user?.id,
     };
+  }
+
+  override saveToLocalStorage() {
+    window.localStorage.setItem(`textarea-${this.todaysDate}`, this.post.body);
+    window.localStorage.setItem(
+      `post-${this.todaysDate}`,
+      JSON.stringify(this.post)
+    );
   }
 
   getCurrentDateDisplay() {
