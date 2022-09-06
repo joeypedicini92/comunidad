@@ -3,6 +3,8 @@
   "version": 2,
   "projects": {
     "comunidad": "apps/comunidad",
-    "comunidad-e2e": "apps/comunidad-e2e"
+    "comunidad-e2e": "apps/comunidad-e2e",
+    "marketing": "apps/marketing",
+    "marketing-e2e": "apps/marketing-e2e"
   }
 }

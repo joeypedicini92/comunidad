@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "comunidaddies"
-  }
+  },
+  "targets": {
+    "comunidaddies": {
+      "hosting": {
+        "marketing": [
+          "comunidad-journal"
+        ],
+        "app": [
+          "comunidaddies"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
