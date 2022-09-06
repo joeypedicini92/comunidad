@@ -1,38 +1,14 @@
+import { supabase } from '../utils/supabaseClient';
+
 export default function Example() {
   const handleSubmit = async (event) => {
     // Stop the form from submitting and refreshing the page.
     event.preventDefault();
 
     // Get data from the form.
-    const data = {
-      email: event.target.email.value,
-    };
-
-    // Send the data to the server in JSON format.
-    const JSONdata = JSON.stringify(data);
-
-    // API endpoint where we send form data.
-    const endpoint = '/api/form';
-
-    // Form the request for sending data to the server.
-    const options = {
-      // The method is POST because we are sending data.
-      method: 'POST',
-      // Tell the server we're sending JSON.
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      // Body of the request is the JSON data we created above.
-      body: JSONdata,
-    };
-
-    // Send the form data to our forms API on Vercel and get a response.
-    const response = await fetch(endpoint, options);
-
-    // Get the response data from server as JSON.
-    // If server returns the name submitted, that means the form works.
-    const result = await response.json();
-    alert(`A login link was sent to: ${result.data}`);
+    const email = event.target.email.value;
+    await supabase.auth.signIn({ email });
+    alert('Check your email for the login link!');
   };
   return (
     <div className="bg-white pb-8 sm:pb-12 lg:pb-12">

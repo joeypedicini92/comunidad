@@ -17,7 +17,7 @@
   },
   {
     "target": "marketing",
-    "public": "dist/apps/marketing",
+    "public": "dist/apps/marketing/exported",
     "ignore": [
       "firebase.json",
       "**/.*",
