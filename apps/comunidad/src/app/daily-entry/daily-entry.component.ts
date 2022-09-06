@@ -34,8 +34,7 @@ export class DailyEntryComponent extends CreatePostComponent {
           this.post = this.createDefaultPost();
         }
         setTimeout(() => {
-          this.post = this.createDefaultPost();
-          this.post.body = '';
+          location.reload();
         }, this.midnight());
 
         setInterval(() => {
