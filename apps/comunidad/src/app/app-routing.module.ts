@@ -22,7 +22,7 @@ const routes: Routes = [
       { path: 'daily-entry', component: DailyEntryComponent },
       { path: 'generic-entry', component: CreatePostComponent },
       { path: 'my-journal', component: MyJournalComponent },
-      { path: 'dad-feed', component: DadFeedComponent },
+      { path: 'my-comunidad', component: DadFeedComponent },
       { path: '', redirectTo: 'daily-entry', pathMatch: 'full' },
     ],
   },

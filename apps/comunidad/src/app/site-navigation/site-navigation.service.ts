@@ -14,7 +14,7 @@ export const appPages: Page[] = [
     description: `This is your daily journaling page. The idea is to get in the habit of writing daily. Write about whatever you did or felt throughout the day. Each day will have a sample prompt to help you get started.`,
   },
   {
-    name: 'New Generic Post',
+    name: 'New Post',
     route: 'generic-entry',
     description: `Use this page for any additional or off topic posts you want to make to your journal. There is no limit to the number of these posts you can make in a day.`,
   },
@@ -24,8 +24,8 @@ export const appPages: Page[] = [
     description: `This is your journal. You can view all of your posts here. You can also edit or delete any of your posts.`,
   },
   {
-    name: 'Dad Feed',
-    route: 'dad-feed',
+    name: 'My Comunidad',
+    route: 'my-comunidad',
     description: `Here's a snapshot of what other dads were feeling yesterday.`,
   },
 ];

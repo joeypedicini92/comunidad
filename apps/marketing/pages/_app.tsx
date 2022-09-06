@@ -7,6 +7,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Welcome to our Comunidad</title>
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
       </Head>
       <main className="app">
         <Component {...pageProps} />
