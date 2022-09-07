@@ -24,7 +24,7 @@ export const appPages: Page[] = [
     description: `This is your journal. You can view all of your posts here. You can also edit or delete any of your posts.`,
   },
   {
-    name: 'My Comunidad',
+    name: 'Mi Comunidad',
     route: 'my-comunidad',
     description: `See what others were writing about yesterday.`,
   },
