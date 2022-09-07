@@ -9,6 +9,10 @@ function CustomApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Welcome to our Comunidad</title>
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <script
+          async=""
+          src="https://www.googletagmanager.com/gtag/js?id=UA-236221704-1"
+        ></script>
       </Head>
       <main className="app">
         <Header></Header>
