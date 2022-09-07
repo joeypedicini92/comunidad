@@ -10,7 +10,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <title>Welcome to our Comunidad</title>
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
         <script
-          async=""
+          async
           src="https://www.googletagmanager.com/gtag/js?id=UA-236221704-1"
         ></script>
       </Head>
