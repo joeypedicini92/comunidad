@@ -9,8 +9,13 @@ import { SupabaseService } from './supabase/supabase.service';
 export class AppComponent implements OnInit, AfterViewInit {
   session = this.supabase.session;
   @ViewChild('pwaInstall', { static: true }) pwaInstall: any;
+  pwaSeen = false;
 
-  constructor(private readonly supabase: SupabaseService) {}
+  constructor(private readonly supabase: SupabaseService) {
+    if (window.localStorage.getItem('pwa-install')) {
+      this.pwaSeen = true;
+    }
+  }
 
   ngOnInit() {
     this.supabase.authChanges((_, session) => (this.session = session));
@@ -19,8 +24,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       try {
-        if (!this.pwaInstall.nativeElement.getInstalledStatus()) {
+        if (
+          !this.pwaInstall.nativeElement.getInstalledStatus() &&
+          !this.pwaSeen
+        ) {
           this.pwaInstall.nativeElement.openPrompt();
+          window.localStorage.setItem('pwa-install', 'true');
         }
       } catch (e) {
         console.log(e);
