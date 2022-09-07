@@ -23,6 +23,7 @@ import { PillListComponent } from './pill-list/pill-list.component';
 import { PublicProfileComponent } from './public-profile/public-profile.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { PostPermissionInputComponent } from './post-permission-input/post-permission-input.component';
+import { MarkdownModule } from 'ngx-markdown';
 import '@pwabuilder/pwainstall';
 
 @NgModule({
@@ -47,6 +48,7 @@ import '@pwabuilder/pwainstall';
     PostPermissionInputComponent,
   ],
   imports: [
+    MarkdownModule.forRoot(),
     BrowserModule,
     FormsModule,
     AppRoutingModule,

@@ -23,7 +23,9 @@
         "styles": [
           "apps/comunidad/src/styles.scss"
         ],
-        "scripts": [],
+        "scripts": [
+          "node_modules/marked/marked.min.js"
+        ],
         "serviceWorker": true,
         "ngswConfigPath": "apps/comunidad/ngsw-config.json"
       },
