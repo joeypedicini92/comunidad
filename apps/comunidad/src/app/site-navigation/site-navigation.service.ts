@@ -16,7 +16,7 @@ export const appPages: Page[] = [
   {
     name: 'New Post',
     route: 'generic-entry',
-    description: `Use this page for any additional or off topic posts you want to make to your journal. There is no limit to the number of these posts you can make in a day.`,
+    description: `Use this page for any additional posts you want to make to your journal. There is no limit to the number of these posts you can make in a day.`,
   },
   {
     name: 'My Journal',
@@ -26,7 +26,7 @@ export const appPages: Page[] = [
   {
     name: 'My Comunidad',
     route: 'my-comunidad',
-    description: `Here's a snapshot of what other dads were feeling yesterday.`,
+    description: `See what others were writing about yesterday.`,
   },
 ];
 
