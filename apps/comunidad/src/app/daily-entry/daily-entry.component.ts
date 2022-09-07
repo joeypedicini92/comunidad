@@ -23,9 +23,7 @@ export class DailyEntryComponent extends CreatePostComponent {
         if (post) {
           this.post = {
             ...post,
-            body:
-              window.localStorage.getItem(`textarea-${this.todaysDate}`) ||
-              post.body,
+            body: post.body,
           };
         }
       })
