@@ -45,12 +45,13 @@
             -->
             <div *ngIf="userMenuOpen" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
               <!-- Active: "bg-gray-100", Not Active: "" -->
+
+              <a *ngFor="let page of personalPages" (click)="goToRoute(page.route)" class="cursor-pointer block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">{{page.name}}</a>
+              <a (click)="signOut()" class="cursor-pointer block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
               <a class="cursor-pointer block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" [href]="'/public/' + userId" target="_blank"
               >View Public Journal</a>
-              <a *ngFor="let page of personalPages" (click)="goToRoute(page.route)" class="cursor-pointer block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">{{page.name}}</a>
               <a class="cursor-pointer block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" href="https://github.com/joeypedicini92/comunidad/issues" target="_blank"
               >Report an Issue</a>
-              <a (click)="signOut()" class="cursor-pointer block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
             </div>
           </div>
         </div>
@@ -106,12 +107,13 @@
         </button>
       </div>
       <div class="mt-3 px-2 space-y-1">
+
+        <a *ngFor="let page of personalPages" (click)="goToRoute(page.route)" class="cursor-pointer block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">{{page.name}}</a>
+        <a (click)="signOut()" class="cursor-pointer block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Sign out</a>
         <a class="cursor-pointer block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" [href]="'/public/' + userId" target="_blank"
         >View Public Journal</a>
-        <a *ngFor="let page of personalPages" (click)="goToRoute(page.route)" class="cursor-pointer block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">{{page.name}}</a>
         <a class="cursor-pointer block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" href="https://github.com/joeypedicini92/comunidad/issues" target="_blank"
         >Report an Issue</a>
-        <a (click)="signOut()" class="cursor-pointer block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">Sign out</a>
       </div>
     </div>
   </div>
