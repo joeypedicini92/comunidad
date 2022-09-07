@@ -6,6 +6,7 @@
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
+  "description": "Comunidad is a social network for mindful journaling and sharing.",
   "icons": [
     {
       "src": "assets/icons/android-chrome-192x192.png",

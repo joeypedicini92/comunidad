@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -23,6 +23,7 @@ import { PillListComponent } from './pill-list/pill-list.component';
 import { PublicProfileComponent } from './public-profile/public-profile.component';
 import { CreatePostComponent } from './create-post/create-post.component';
 import { PostPermissionInputComponent } from './post-permission-input/post-permission-input.component';
+import '@pwabuilder/pwainstall';
 
 @NgModule({
   declarations: [
@@ -58,5 +59,6 @@ import { PostPermissionInputComponent } from './post-permission-input/post-permi
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

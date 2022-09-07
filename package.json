@@ -25,6 +25,7 @@
     "@heroicons/react": "^2.0.10",
     "@notionhq/client": "^2.1.1",
     "@nrwl/angular": "14.6.4",
+    "@pwabuilder/pwainstall": "^1.6.7",
     "@supabase/supabase-js": "^1.35.4",
     "axios": "^0.27.2",
     "core-js": "^3.6.5",
