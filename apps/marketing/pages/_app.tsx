@@ -7,7 +7,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Welcome to our Comunidad</title>
+        <title>Find Your Comunidad</title>
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
         <script
           async
