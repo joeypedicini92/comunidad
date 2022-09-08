@@ -162,7 +162,7 @@ export class SupabaseService {
     const today = this.getTodaysDate();
     const res = await this.supabase
       .from<Post>('posts')
-      .select(`body, title, image_url, created_at`)
+      .select(`body, title, created_at`)
       // TODO this 20 is a magic number, also it should consider connections and close connections
       .gte('body_permission', 20)
       .lt('created_at', today)
