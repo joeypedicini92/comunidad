@@ -107,45 +107,58 @@ export default function Example() {
                 to be able to share it with others.
               </p>
               <p>
-                That's where Comunidad(dies) comes in; I wanted to build a place
-                where I could write, and where I could share my writing with
-                others. I wanted to build a place where I could share my
-                thoughts and feelings, and where others could find authentic
-                community. I wanted to focus just on the writing, and not have
-                to worry about the other stuff. I wanted to be able to pass down
-                pieces of wisdom to Lucy as she gets older. None of my current
-                journaling tools were able to do everything I wanted, so I
-                decided to build my own.
+                That's where Comunidad(dies) comes in; I initially wanted a
+                place where I could share learned wisdom with Lucy as she gets
+                older. We share the same birthday she is exactly 28 years
+                younger than me. What do I want her to know about me, about
+                herself, about the world, when she turns 28? The problem I have
+                with most social media or blogging platforms is that they are
+                not designed for long form writing. They are also not designed
+                to be shared in the long term future. Those were problems I
+                wanted to solve with Comunidad(dies).
               </p>
-              <h3>Features that set Comunidad(dies) apart:</h3>
-              <ul role="list">
-                <li>Lightweight and simple to use.</li>
-                <li>
-                  Landing Page is a blank slate writing area that resets every
-                  day.
-                </li>
-                <li>
-                  Supports markdown for quick and non-intrusive formatting.
-                </li>
-                <li>
-                  Multiple levels of sharing: private, send to email list, share
-                  with Comunidad, post to publicly accessible blog.
-                </li>
-                <li>
-                  Runs on the web, or can be downloaded and installed on
-                  android, ios, mac, windows.
-                </li>
-                <li>
-                  Daily writing prompts (taken from{' '}
-                  <a href="https://www.amazon.com/Year-Spiritual-Awakening-Inspiration-Meditations/dp/1638786887">
-                    A Year of Spiritual Awakening by Bela Devine
-                  </a>
-                  ).
-                </li>
-              </ul>
+              <h3>Why the name Comunidaddies?</h3>
               <p>
-                I find this useful for me as I continue on my journey of
-                spiritual awakening. Hopefully you will too.
+                The name Comunidad(dies) comes from the Spanish word "Comunidad"
+                which means "Community". Since another of my intentions was to
+                have a place for dads to share wisdom and techniques with each
+                other, and as a little play on words cause I am a dad, I took
+                the suffix and just expanded it from "dad" to "daddies" to make
+                it "Comunidaddies".
+              </p>
+              <p>
+                <h3>Features that set Comunidad(dies) apart:</h3>
+                <ul role="list">
+                  <li>Lightweight and simple to use.</li>
+                  <li>
+                    Landing Page is a blank slate writing area that resets every
+                    day.
+                  </li>
+                  <li>
+                    Supports markdown for quick and non-intrusive formatting.
+                  </li>
+                  <li>
+                    Multiple levels of sharing: private, send to email list,
+                    share with Comunidad, post to publicly accessible blog.
+                  </li>
+                  <li>
+                    Runs on the web, or can be downloaded and installed on
+                    android, ios, mac, windows.
+                  </li>
+                  <li>
+                    Daily writing prompts (taken from{' '}
+                    <a href="https://www.amazon.com/Year-Spiritual-Awakening-Inspiration-Meditations/dp/1638786887">
+                      A Year of Spiritual Awakening by Bela Devine
+                    </a>
+                    ).
+                  </li>
+                </ul>
+                I hope you enjoy the site, and I hope you find it useful. If you
+                have any questions or comments, please feel free to reach out to
+                me at{' '}
+                <a href="mailto:joey@comunidaddies.com">
+                  joey@comunidaddies.com
+                </a>
               </p>
             </div>
           </div>
