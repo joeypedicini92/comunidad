@@ -24,8 +24,8 @@ export default function Example() {
                   A community built around daily journaling
                 </h1>
                 <p className="mt-6 text-xl text-gray-500">
-                  The best way to start journaling is to start journaling.
-                  We&apos;ll help you get started.
+                  "The best way to start journaling is to start journaling." -
+                  Todd Perelmuter
                 </p>
               </div>
               <form
