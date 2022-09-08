@@ -148,7 +148,7 @@ export default function Example() {
                   <li>
                     Daily writing prompts (taken from{' '}
                     <a href="https://www.amazon.com/Year-Spiritual-Awakening-Inspiration-Meditations/dp/1638786887">
-                      A Year of Spiritual Awakening by Bela Devine
+                      A Year of Spiritual Awakening by Bela Divine
                     </a>
                     ).
                   </li>
