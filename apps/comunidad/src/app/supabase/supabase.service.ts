@@ -121,6 +121,13 @@ export class SupabaseService {
     );
   }
 
+  signInGoogle() {
+    return this.supabase.auth.signIn(
+      { provider: 'google' },
+      { redirectTo: `${window.location.origin}/daily-entry` }
+    );
+  }
+
   signOut() {
     return this.supabase.auth.signOut();
   }
