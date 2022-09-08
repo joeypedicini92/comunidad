@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { Post, SupabaseService } from '../supabase/supabase.service';
+import {
+  PermissionLevel,
+  Post,
+  SupabaseService,
+} from '../supabase/supabase.service';
 import { ClickSendService } from '../click-send/click-send.service';
 import { CreatePostComponent } from '../create-post/create-post.component';
 import { isEqual } from 'lodash';
@@ -74,6 +78,9 @@ export class DailyEntryComponent extends CreatePostComponent {
     return {
       body: window.localStorage.getItem(`textarea-${this.todaysDate}`) || '',
       title: this.getCurrentDateDisplay(),
+      body_permission: parseInt(
+        window.localStorage.getItem(`generic-post-permission`) || ''
+      ),
       user_id: this.supabase.user?.id,
     };
   }
@@ -84,6 +91,11 @@ export class DailyEntryComponent extends CreatePostComponent {
       `post-${this.todaysDate}`,
       JSON.stringify(this.post)
     );
+  }
+
+  override onChangePermissionLevel(permission: PermissionLevel) {
+    this.post.body_permission = permission.permission_level;
+    this.post.image_permission = permission.permission_level;
   }
 
   getCurrentDateDisplay() {

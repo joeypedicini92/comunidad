@@ -45,6 +45,9 @@ export class CreatePostComponent {
     return {
       body: window.localStorage.getItem(`generic-post-body`) || '',
       title: window.localStorage.getItem(`generic-post-title`) || '',
+      body_permission: parseInt(
+        window.localStorage.getItem(`generic-post-permission`) || ''
+      ),
       user_id: this.supabase.user?.id,
     };
   }
@@ -115,5 +118,9 @@ export class CreatePostComponent {
   onChangePermissionLevel(permission: PermissionLevel) {
     this.post.body_permission = permission.permission_level;
     this.post.image_permission = permission.permission_level;
+    window.localStorage.setItem(
+      `generic-post-permission`,
+      this.post.body_permission?.toString() || ''
+    );
   }
 }
