@@ -84,17 +84,24 @@ export default function Example() {
             <div className="mx-auto max-w-prose text-base lg:max-w-none">
               <p className="text-lg text-gray-500">
                 Hello! My name is Joey and I am the founder of Comunidad(dies).
-                I am a father first to my amazing daughter Luciana, husband
-                second to my beautiful wife Tathiana. I am a software developer
-                with 10 years of professional experience, and have a passion for
-                building tools which genuinely improve people's lives.
+                I am a husband, father, and a software developer with 10 years
+                of professional experience, and have a passion for building
+                tools which genuinely improve the lives of others.
               </p>
             </div>
             <div className="prose prose-indigo mx-auto mt-5 text-gray-500 lg:col-start-1 lg:row-start-1 lg:max-w-none">
               <p>
-                I've recently begun to dive deep into spiritual learning,
-                therapy, inner child healing, and general mindfulness. Part of
-                that process has involved a lot of writing and journaling and
+                I became a first time father right as lock downs were happening
+                across the world. It was a difficult time to adjust to so many
+                life changes at once. I reached a breaking point about halfway
+                through that first year and was taken to the ER for
+                self-inflicted wounds. Since that time I decided that I wanted
+                to help new dads be the dads that they want to be.
+              </p>
+              <p>
+                Recently begun to dive deep into spiritual learning, therapy,
+                inner child healing, and general mindfulness. Part of that
+                process has involved a lot of writing and journaling and
                 reflection. I started by training myself to write whenever I
                 sense my mind starting to wander. That then turned into a daily
                 practice of writing down my thoughts and feelings.
@@ -104,7 +111,8 @@ export default function Example() {
                 lot of different places. I had a journal, a Notion notebook,
                 Google Docs, and a few other places where I was writing. I
                 wanted to consolidate all of that into one place, and I wanted
-                to be able to share it with others.
+                to be able to share it with others, and share my wisdom with
+                Lucy as she grows up.
               </p>
               <p>
                 That's where Comunidad(dies) comes in; I initially wanted a
