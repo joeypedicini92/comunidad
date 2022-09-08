@@ -80,54 +80,72 @@ export default function Example() {
               </figure>
             </div>
           </div>
-          <div className="mt-8 lg:mt-0">
+          <div className="prose mt-8 lg:mt-0">
             <div className="mx-auto max-w-prose text-base lg:max-w-none">
               <p className="text-lg text-gray-500">
-                I will fill this in later!!!!
+                Hello! My name is Joey and I am the founder of Comunidad(dies).
+                I am a father first to my amazing daughter Luciana, husband
+                second to my beautiful wife Tathiana. I am a software developer
+                with 10 years of professional experience, and have a passion for
+                building tools which genuinely improve people's lives.
               </p>
             </div>
             <div className="prose prose-indigo mx-auto mt-5 text-gray-500 lg:col-start-1 lg:row-start-1 lg:max-w-none">
               <p>
-                Sollicitudin tristique eros erat odio sed vitae, consequat
-                turpis elementum. Lorem nibh vel, eget pretium arcu vitae. Eros
-                eu viverra donec ut volutpat donec laoreet quam urna.
+                I've recently begun to dive deep into spiritual learning,
+                therapy, inner child healing, and general mindfulness. Part of
+                that process has involved a lot of writing and journaling and
+                reflection. I started by training myself to write whenever I
+                sense my mind starting to wander. That then turned into a daily
+                practice of writing down my thoughts and feelings.
               </p>
               <p>
-                Bibendum eu nulla feugiat justo, elit adipiscing. Ut tristique
-                sit nisi lorem pulvinar. Urna, laoreet fusce nibh leo. Dictum et
-                et et sit. Faucibus sed non gravida lectus dignissim imperdiet
-                a.
+                The problem I started to run into was that I was writing in a
+                lot of different places. I had a journal, a Notion notebook,
+                Google Docs, and a few other places where I was writing. I
+                wanted to consolidate all of that into one place, and I wanted
+                to be able to share it with others.
               </p>
               <p>
-                Dictum magnis risus phasellus vitae quam morbi. Quis lorem lorem
-                arcu, metus, egestas netus cursus. In.
+                That's where Comunidad(dies) comes in; I wanted to build a place
+                where I could write, and where I could share my writing with
+                others. I wanted to build a place where I could share my
+                thoughts and feelings, and where others could find authentic
+                community. I wanted to focus just on the writing, and not have
+                to worry about the other stuff. I wanted to be able to pass down
+                pieces of wisdom to Lucy as she gets older. None of my current
+                journaling tools were able to do everything I wanted, so I
+                decided to build my own.
               </p>
+              <h3>Features that set Comunidad(dies) apart:</h3>
               <ul role="list">
-                <li>Quis elit egestas venenatis mattis dignissim.</li>
+                <li>Lightweight and simple to use.</li>
                 <li>
-                  Cras cras lobortis vitae vivamus ultricies facilisis tempus.
+                  Landing Page is a blank slate writing area that resets every
+                  day.
                 </li>
-                <li>Orci in sit morbi dignissim metus diam arcu pretium.</li>
+                <li>
+                  Supports markdown for quick and non-intrusive formatting.
+                </li>
+                <li>
+                  Multiple levels of sharing: private, send to email list, share
+                  with Comunidad, post to publicly accessible blog.
+                </li>
+                <li>
+                  Runs on the web, or can be downloaded and installed on
+                  android, ios, mac, windows.
+                </li>
+                <li>
+                  Daily writing prompts (taken from{' '}
+                  <a href="https://www.amazon.com/Year-Spiritual-Awakening-Inspiration-Meditations/dp/1638786887">
+                    A Year of Spiritual Awakening by Bela Devine
+                  </a>
+                  ).
+                </li>
               </ul>
               <p>
-                Rhoncus nisl, libero egestas diam fermentum dui. At quis
-                tincidunt vel ultricies. Vulputate aliquet velit faucibus
-                semper. Pellentesque in venenatis vestibulum consectetur nibh
-                id. In id ut tempus egestas. Enim sit aliquam nec, a. Morbi enim
-                fermentum lacus in. Viverra.
-              </p>
-              <h3>How we helped</h3>
-              <p>
-                Tincidunt integer commodo, cursus etiam aliquam neque, et.
-                Consectetur pretium in volutpat, diam. Montes, magna cursus
-                nulla feugiat dignissim id lobortis amet. Laoreet sem est
-                phasellus eu proin massa, lectus. Diam rutrum posuere donec
-                ultricies non morbi. Mi a platea auctor mi.
-              </p>
-              <p>
-                Sagittis scelerisque nulla cursus in enim consectetur quam.
-                Dictum urna sed consectetur neque tristique pellentesque.
-                Blandit amet, sed aenean erat arcu morbi.
+                I find this useful for me as I continue on my journey of
+                spiritual awakening. Hopefully you will too.
               </p>
             </div>
           </div>
