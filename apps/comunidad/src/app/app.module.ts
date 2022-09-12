@@ -25,6 +25,8 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { PostPermissionInputComponent } from './post-permission-input/post-permission-input.component';
 import { MarkdownModule } from 'ngx-markdown';
 import '@pwabuilder/pwainstall';
+import * as LogRocket from 'logrocket';
+LogRocket.init('k0mgyc/comunidaddies');
 
 @NgModule({
   declarations: [
