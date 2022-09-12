@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SupabaseService } from './supabase/supabase.service';
 
 @Component({
@@ -6,9 +6,8 @@ import { SupabaseService } from './supabase/supabase.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   session = this.supabase.session;
-  @ViewChild('pwaInstall', { static: true }) pwaInstall: any;
   pwaSeen = false;
 
   constructor(private readonly supabase: SupabaseService) {
@@ -19,21 +18,5 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.supabase.authChanges((_, session) => (this.session = session));
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      try {
-        if (
-          !this.pwaInstall.nativeElement.getInstalledStatus() &&
-          !this.pwaSeen
-        ) {
-          this.pwaInstall.nativeElement.openPrompt();
-          window.localStorage.setItem('pwa-install', 'true');
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    }, 3000);
   }
 }
