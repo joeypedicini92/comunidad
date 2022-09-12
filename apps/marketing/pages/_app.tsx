@@ -2,6 +2,8 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import Header from './header';
 import './styles.css';
+import * as LogRocket from 'logrocket';
+LogRocket.init('k0mgyc/comunidaddies');
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
