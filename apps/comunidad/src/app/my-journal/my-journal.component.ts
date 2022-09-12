@@ -22,7 +22,8 @@ export class MyJournalComponent implements OnInit {
   }
 
   async showMore() {
-    this.start += this.end + 1;
+    debugger;
+    this.start = this.end + 1;
     this.end += this.rate;
     const data = await this.supabase.getMyJournal(this.start, this.end);
     if (!data || !data.length) {
