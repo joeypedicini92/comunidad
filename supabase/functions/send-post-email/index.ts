@@ -71,7 +71,7 @@ serve(async (req) => {
   }
 
   console.log(
-    'poopy data',
+    'email data',
     clickSendBody,
     `https://${EMAIL_USERID}:${EMAIL_PASSWORD}@${EMAIL_URL}`
   );
@@ -96,7 +96,7 @@ serve(async (req) => {
   try {
     await supabaseClient
       .from('emails')
-      .insert({ email_data: clickSendBody, post_id: postId })
+      .upsert({ email_data: clickSendBody, post_id: postId, sent: true })
       .single();
   } catch (error) {
     console.error(error);

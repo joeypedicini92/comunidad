@@ -66,6 +66,13 @@ export class DailyEntryComponent extends CreatePostComponent {
     try {
       const result = await this.createPost();
       this.post.id = result?.id;
+      this.supabase.prepEmail({
+        body: this.post.body,
+        imageUrl: this.post.image_url || '',
+        postId: this.post.id || '',
+        subject: this.post.title,
+        to: this.selectedContacts.items.map((c) => c.email),
+      });
     } catch (e) {
       console.log(e);
     } finally {

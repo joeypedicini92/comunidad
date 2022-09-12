@@ -9,6 +9,7 @@ import {
   UserIdentity,
 } from '@supabase/supabase-js';
 import { environment } from '../../environments/environment';
+import { EmailBody } from '../click-send/click-send.service';
 
 export interface Profile {
   username: string;
@@ -193,6 +194,13 @@ export class SupabaseService {
       .order('created_at', { ascending: false })
       .range(from, to);
     return res.body;
+  }
+
+  async prepEmail(body: EmailBody) {
+    const res = await this.supabase
+      .from('emails')
+      .upsert({ email_data: body, post_id: body.postId, sent: false })
+      .single();
   }
 
   async getMyJournal(from = 0, to = 20) {

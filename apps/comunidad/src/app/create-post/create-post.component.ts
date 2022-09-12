@@ -72,18 +72,19 @@ export class CreatePostComponent {
 
     try {
       const result = await this.createPost();
-      this.post = {
-        ...this.post,
-        body: '',
-        image_url: '',
-        title: '',
-      };
+      this.post.id = result?.id;
       if (this.post.body_permission && this.post.body_permission >= 10) {
         await this.clickSend.sendEmailForPost(
           this.post,
           this.selectedContacts.items
         );
       }
+      this.post = {
+        ...this.post,
+        body: '',
+        image_url: '',
+        title: '',
+      };
     } catch (e) {
       console.log(e);
     } finally {
