@@ -32,7 +32,8 @@
     <input [(ngModel)]="post.title" type="text" name="title" id="title" class="block w-full border-0 pt-2.5 text-lg font-medium placeholder-gray-500 focus:ring-0" placeholder="Title">
     <label for="description" class="sr-only">Description</label>
 
-    <textarea id="textarea" #textarea (ngModelChange)="saveToLocalStorage()" [(ngModel)]="post.body" name="textarea"
+    <textarea data-private id="textarea" #textarea (ngModelChange)="saveToLocalStorage()" [(ngModel)]="post.body"
+      name="textarea"
       rows="12"
       class=" border-transparent focus:border-transparent focus:ring-0 border-none focus:border-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50"
       [placeholder]="writingPrompt"></textarea>
