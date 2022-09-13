@@ -35,7 +35,7 @@ serve(async (req) => {
     });
   }
   console.log('post request being handled');
-  const { subject, body, to, postId, imageUrl } = await req.json();
+  const { subject, body, to, postId, imageUrl, immediate } = await req.json();
 
   const clickSendBody: any = {
     to,
@@ -77,26 +77,27 @@ serve(async (req) => {
   );
 
   let result;
-
-  try {
-    result = await fetch(
-      `https://${EMAIL_USERID}:${EMAIL_PASSWORD}@${EMAIL_URL}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(clickSendBody),
-      }
-    );
-  } catch (error) {
-    console.error('error sending clickSend request', error);
+  if (immediate) {
+    try {
+      result = await fetch(
+        `https://${EMAIL_USERID}:${EMAIL_PASSWORD}@${EMAIL_URL}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(clickSendBody),
+        }
+      );
+    } catch (error) {
+      console.error('error sending clickSend request', error);
+    }
   }
 
   try {
     await supabaseClient
       .from('emails')
-      .upsert({ email_data: clickSendBody, post_id: postId, sent: true })
+      .upsert({ email_data: clickSendBody, post_id: postId, sent: immediate })
       .single();
   } catch (error) {
     console.error(error);

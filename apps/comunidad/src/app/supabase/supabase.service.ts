@@ -205,13 +205,6 @@ export class SupabaseService {
     return res.body;
   }
 
-  async prepEmail(body: EmailBody) {
-    const res = await this.supabase
-      .from('emails')
-      .upsert({ email_data: body, post_id: body.postId, sent: false })
-      .single();
-  }
-
   async getMyJournal(from = 0, to = 20) {
     const res = await this.supabase
       .from<Post>('posts')

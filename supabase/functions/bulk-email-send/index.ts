@@ -24,7 +24,10 @@ serve(async (req) => {
     .eq('sent', false);
 
   for (const email of unsentEmails.data || []) {
-    const body = Object.assign({ postId: email.post_id }, email.email_data);
+    const body = Object.assign(
+      { postId: email.post_id, immediate: true },
+      email.email_data
+    );
     const result = await fetch(
       `
       https://lqdaxluelkkszzlmpvrh.functions.supabase.co/send-post-email`,

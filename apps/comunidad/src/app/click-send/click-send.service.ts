@@ -9,6 +9,7 @@ export interface EmailBody {
   postId: string;
   imageUrl: string;
   to: Contact[];
+  immediate: boolean;
 }
 
 // TODO put this in an environment file
@@ -20,7 +21,7 @@ const SEND_EMAIL_URL =
 })
 export class ClickSendService {
   constructor(private supabase: SupabaseService) {}
-  async sendEmailForPost(post: Post, contacts: Contact[]) {
+  async sendEmailForPost(post: Post, contacts: Contact[], immediate = true) {
     const body: EmailBody = {
       subject: post.title,
       body: post.body,
@@ -29,6 +30,7 @@ export class ClickSendService {
       to: contacts?.map((con) => {
         return { email: con.email, name: con.name };
       }),
+      immediate,
     };
     const result = await axios.post(SEND_EMAIL_URL, body, {
       headers: {
