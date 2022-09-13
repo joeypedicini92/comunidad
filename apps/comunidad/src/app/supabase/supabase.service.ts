@@ -165,6 +165,15 @@ export class SupabaseService {
     return date.toLocaleDateString();
   }
 
+  async getPostDatesForUser(id?: string) {
+    const res = await this.supabase
+      .from<Post>('posts')
+      .select('created_at')
+      .eq('user_id', id || this.user?.id)
+      .order('created_at', { ascending: false });
+    return res.body;
+  }
+
   async getDadFeed(from = 0, to = 20) {
     const yesterday = this.getYesterdayDate();
     const today = this.getTodaysDate();

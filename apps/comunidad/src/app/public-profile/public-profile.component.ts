@@ -15,6 +15,12 @@ export class PublicProfileComponent implements OnInit {
   id!: string | null;
   userName = '';
   posts: Post[] = [];
+  range = 0;
+  postDates: string[] = [];
+
+  get max() {
+    return this.postDates.length;
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +44,18 @@ export class PublicProfileComponent implements OnInit {
       this.posts = data || [];
     }
     await this.getUserDetails();
+
+    const rows = await this.supabase.getPostDatesForUser(this.id || '');
+    this.postDates =
+      rows?.map((b) => new Date(b.created_at as any).toLocaleDateString()) ||
+      [];
+  }
+
+  async onRangeChange() {
+    this.start = this.range;
+    this.end = this.start + this.rate;
+    const data = await this.supabase.getMyJournal(this.start, this.end);
+    this.posts = data || [];
   }
 
   async showMore() {
