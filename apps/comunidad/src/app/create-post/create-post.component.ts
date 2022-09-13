@@ -72,6 +72,9 @@ export class CreatePostComponent {
 
     try {
       const result = await this.createPost();
+      if (!result) {
+        throw 'Error creating post';
+      }
       this.post.id = result?.id;
       if (this.post.body_permission && this.post.body_permission >= 10) {
         await this.clickSend.sendEmailForPost(
