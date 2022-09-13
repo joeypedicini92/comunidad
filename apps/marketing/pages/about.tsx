@@ -139,6 +139,10 @@ export default function Example() {
                 <ul role="list">
                   <li>Lightweight and simple to use.</li>
                   <li>
+                    Your data won't be sold. We don't and will never have any
+                    ads.
+                  </li>
+                  <li>
                     Landing Page is a blank slate writing area that resets every
                     day.
                   </li>
