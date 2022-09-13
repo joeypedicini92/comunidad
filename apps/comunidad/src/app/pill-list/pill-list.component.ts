@@ -14,7 +14,7 @@ export class PillListComponent implements OnInit {
   ngOnInit(): void {}
 
   removeItem(index: number) {
-    this.items.splice(index);
+    this.items.splice(index, 1);
   }
   clearAll() {
     this.items = [];
