@@ -96,7 +96,7 @@ export class SupabaseService {
 
     if (!profile || profile.error) {
       profile = await this.updateProfile({
-        email: this.user?.email || '',
+        email: this.user?.email || this.session?.user?.email || '',
         username: 'NOT SET',
         avatar_url: '',
       });
