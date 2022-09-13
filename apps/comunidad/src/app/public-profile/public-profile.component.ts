@@ -54,7 +54,11 @@ export class PublicProfileComponent implements OnInit {
   async onRangeChange() {
     this.start = this.range;
     this.end = this.start + this.rate;
-    const data = await this.supabase.getMyJournal(this.start, this.end);
+    const data = await this.supabase.getPublicJournal(
+      this.id || '',
+      this.start,
+      this.end
+    );
     this.posts = data || [];
   }
 
