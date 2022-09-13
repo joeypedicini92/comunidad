@@ -15,6 +15,11 @@ function CustomApp({ Component, pageProps }: AppProps) {
           async
           src="https://www.googletagmanager.com/gtag/js?id=UA-236221704-1"
         ></script>
+        <script
+          async
+          type="module"
+          src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwainstall"
+        ></script>
       </Head>
       <main className="app">
         <Header></Header>

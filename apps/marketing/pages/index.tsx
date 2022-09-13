@@ -53,6 +53,7 @@ export default function Example() {
                   </button>
                 </div>
               </form>
+              <pwa-install manifestpath="https://comunidaddies.web.app/manifest.webmanifest"></pwa-install>
             </div>
           </div>
         </div>
