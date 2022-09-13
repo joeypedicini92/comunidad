@@ -38,7 +38,7 @@
       class=" border-transparent focus:border-transparent focus:ring-0 border-none focus:border-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50"
       [placeholder]="writingPrompt"></textarea>
     <img [hidden]="!file" id="uploadedImg" src="#" />
-    <img *ngIf="post.image_url && !file" [src]="post.image_url">
+    <img [hidden]="!post.image_url" *ngIf="post.image_url && !file" [src]="post.image_url">
 
     <!-- Spacer element to match the height of the toolbar -->
     <div aria-hidden="true">

@@ -87,6 +87,7 @@ export class CreatePostComponent {
       };
     } catch (e) {
       console.log(e);
+      alert('Error saving post');
     } finally {
       this.isLoading = false;
     }
