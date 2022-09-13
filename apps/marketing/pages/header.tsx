@@ -35,12 +35,10 @@ export default function Header() {
         </div>
         <div className="flex flex-wrap justify-center space-x-6 py-4 lg:hidden">
           {navigation.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-base font-medium text-white hover:text-indigo-50"
-            >
-              {link.name}
+            <Link key={link.name} href={link.href}>
+              <span className="text-base font-medium text-white hover:text-indigo-50 cursor-pointer">
+                {link.name}
+              </span>
             </Link>
           ))}
         </div>
