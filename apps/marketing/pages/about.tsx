@@ -83,10 +83,10 @@ export default function Example() {
           <div className="prose mt-8 lg:mt-0">
             <div className="mx-auto max-w-prose text-base lg:max-w-none">
               <p className="text-lg text-gray-500">
-                Hello! My name is Joey and I am the founder of Comunidad(dies).
-                I am a husband, father, and a software developer with 10 years
-                of professional experience, and have a passion for building
-                tools which genuinely improve the lives of others.
+                Hello! My name is Joey and I am the founder of Comunidaddies. I
+                am a husband, father, and a software developer with 10 years of
+                professional experience, and have a passion for building tools
+                which genuinely improve the lives of others.
               </p>
             </div>
             <div className="prose prose-indigo mx-auto mt-5 text-gray-500 lg:col-start-1 lg:row-start-1 lg:max-w-none">
@@ -115,19 +115,19 @@ export default function Example() {
                 Lucy as she grows up.
               </p>
               <p>
-                That's where Comunidad(dies) comes in; I initially wanted a
-                place where I could share learned wisdom with Lucy as she gets
-                older. We share the same birthday she is exactly 28 years
-                younger than me. What do I want her to know about me, about
-                herself, about the world, when she turns 28? The problem I have
-                with most social media or blogging platforms is that they are
-                not designed for long form writing. They are also not designed
-                to be shared in the long term future. Those were problems I
-                wanted to solve with Comunidad(dies).
+                That's where Comunidaddies comes in; I initially wanted a place
+                where I could share learned wisdom with Lucy as she gets older.
+                We share the same birthday she is exactly 28 years younger than
+                me. What do I want her to know about me, about herself, about
+                the world, when she turns 28? The problem I have with most
+                social media or blogging platforms is that they are not designed
+                for long form writing. They are also not designed to be shared
+                in the long term future. Those were problems I wanted to solve
+                with Comunidaddies.
               </p>
               <h3>Why the name Comunidaddies?</h3>
               <p>
-                The name Comunidad(dies) comes from the Spanish word "Comunidad"
+                The name Comunidaddies comes from the Spanish word "Comunidad"
                 which means "Community". Since another of my intentions was to
                 have a place for dads to share wisdom and techniques with each
                 other, and as a little play on words cause I am a dad, I took
@@ -135,7 +135,7 @@ export default function Example() {
                 it "Comunidaddies".
               </p>
               <p>
-                <h3>Features that set Comunidad(dies) apart:</h3>
+                <h3>Features that set Comunidaddies apart:</h3>
                 <ul role="list">
                   <li>Lightweight and simple to use.</li>
                   <li>
