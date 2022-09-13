@@ -89,6 +89,8 @@ export class CreatePostComponent {
         title: '',
       };
       alert('Post saved!');
+      window.localStorage.removeItem(`generic-post-body`);
+      window.localStorage.removeItem(`generic-post-title`);
     } catch (e) {
       console.log(e);
       alert('Error saving post');
