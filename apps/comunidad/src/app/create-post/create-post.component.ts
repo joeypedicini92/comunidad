@@ -85,6 +85,7 @@ export class CreatePostComponent {
         image_url: '',
         title: '',
       };
+      alert('Post saved!');
     } catch (e) {
       console.log(e);
       alert('Error saving post');
