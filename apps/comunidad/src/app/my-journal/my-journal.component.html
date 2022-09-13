@@ -1,7 +1,7 @@
 <!-- TODO need to parameterize text entry with default title, default permissions, word count, etc. to make daily and regular different -->
 <!-- <comunidad-text-entry></comunidad-text-entry> -->
 <input id="default-range" type="range" min="0" [max]="max" [value]="range" [(ngModel)]="range"
-  (pointerup)="onRangeChange()" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+  (mouseup)="onRangeChange()" (touchend)="onRangeChange()" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
 
 <ul role="list" class="divide-y divide-gray-200">
   <li *ngFor="let post of posts" class="py-4">
