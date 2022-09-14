@@ -37,7 +37,7 @@
     <textarea data-private id="textarea" #textarea (ngModelChange)="saveToLocalStorage()" [(ngModel)]="post.body"
       name="textarea"
       rows="12"
-      class=" border-transparent focus:border-transparent focus:ring-0 border-none focus:border-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50"
+      class="text-xl border-transparent focus:border-transparent focus:ring-0 border-none focus:border-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50"
       [placeholder]="writingPrompt"></textarea>
     <img [hidden]="!file" id="uploadedImg" src="#" />
     <img [hidden]="!post.image_url" *ngIf="post.image_url && !file" [src]="post.image_url">
