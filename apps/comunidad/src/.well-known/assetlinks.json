@@ -1,0 +1,6 @@
+[{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "app.web.comunidaddies.twa",
+                     "sha256_cert_fingerprints": ["83:AD:21:D7:7B:68:BD:07:99:72:EE:26:DC:63:D8:3E:55:AA:2A:0A:57:55:E7:CD:98:84:FA:F3:42:16:29:CA"] }
+      }
+]

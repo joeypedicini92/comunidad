@@ -18,7 +18,8 @@
         "assets": [
           "apps/comunidad/src/favicon.ico",
           "apps/comunidad/src/assets",
-          "apps/comunidad/src/manifest.webmanifest"
+          "apps/comunidad/src/manifest.webmanifest",
+          "apps/comunidad/src/.well-known"
         ],
         "styles": [
           "apps/comunidad/src/styles.scss"
