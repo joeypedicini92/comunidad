@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "src/app/free-draw/fabric.js"],
   "compilerOptions": {
     "types": ["jest", "node"]
   }

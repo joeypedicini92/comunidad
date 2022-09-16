@@ -10,6 +10,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { PublicProfileComponent } from './public-profile/public-profile.component';
 import { DailyEntryComponent } from './daily-entry/daily-entry.component';
 import { CreatePostComponent } from './create-post/create-post.component';
+import { FreeDrawComponent } from './free-draw/free-draw.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
       { path: 'generic-entry', component: CreatePostComponent },
       { path: 'my-journal', component: MyJournalComponent },
       { path: 'my-comunidad', component: DadFeedComponent },
+      { path: 'free-draw', component: FreeDrawComponent },
       { path: '', redirectTo: 'daily-entry', pathMatch: 'full' },
     ],
   },
