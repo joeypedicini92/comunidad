@@ -14,20 +14,7 @@
   }
   ```
 -->
-<div class="border-gray-200 pb-5 flex">
-  <div *ngIf="post.body_permission !== 0" class="ml-3 mr-3">
-    <h3 class="text-lg font-medium leading-6 text-gray-900">Email Recipients</h3>
-    <p class="mt-2 max-w-4xl text-sm text-gray-500 pb-5">Below are your contacts who will receive an email of your post. Update your contacts <a href="/contacts">here.</a></p>
-    <comunidad-pill-list #selectedContacts [items]="contacts" [display]="'name'"></comunidad-pill-list>
-  </div>
-  <comunidad-post-permission-input [preselectedPermission]="post.body_permission || 10"
-    class="hidden lg:block ml-auto mt-auto"
-    (changePermissionLevel)="onChangePermissionLevel($event)"></comunidad-post-permission-input>
-</div>
-<comunidad-post-permission-input [preselectedPermission]="post.body_permission || 10"
-  class="table lg:hidden ml-auto mt-auto"
-  (changePermissionLevel)="onChangePermissionLevel($event)">
-</comunidad-post-permission-input>
+
 <form class="relative" *ngIf="post">
   <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden ">
     <label for="title" class="sr-only">Title</label>
