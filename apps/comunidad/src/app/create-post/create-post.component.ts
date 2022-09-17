@@ -77,10 +77,10 @@ export class CreatePostComponent {
       }
       this.post.id = result?.id;
       if (this.post.body_permission && this.post.body_permission >= 10) {
-        await this.clickSend.sendEmailForPost(
-          this.post,
-          this.selectedContacts.items
-        );
+        // await this.clickSend.sendEmailForPost(
+        //   this.post,
+        //   this.selectedContacts.items
+        // );
       }
       this.post = {
         ...this.post,
