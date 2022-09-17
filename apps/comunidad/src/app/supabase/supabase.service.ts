@@ -231,8 +231,8 @@ export class SupabaseService {
       .select()
       .eq('title', title)
       .eq('user_id', this.user?.id)
-      .maybeSingle();
-    return res.body;
+      .limit(1);
+    return res.body ? res.body[0] : null;
   }
 
   async uploadFileForPost(post: Post, file: File) {
