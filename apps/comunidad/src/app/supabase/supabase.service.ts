@@ -244,11 +244,11 @@ export class SupabaseService {
   }
 
   async getFileUrl(path: string) {
-    const { publicURL, error } = await this.supabase.storage
+    const { data, error } = await this.supabase.storage
       .from('post-images')
-      .getPublicUrl(path);
+      .createSignedUrl(path, 600);
 
-    return publicURL;
+    return data;
   }
 
   async addContact(contact: Contact) {

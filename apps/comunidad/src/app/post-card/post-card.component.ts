@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Post } from '../supabase/supabase.service';
+import { Post, SupabaseService } from '../supabase/supabase.service';
 import { MarkdownService } from 'ngx-markdown';
 
 @Component({
@@ -10,14 +10,23 @@ import { MarkdownService } from 'ngx-markdown';
 })
 export class PostCardComponent implements OnInit {
   postBody = '';
+  imageUrl = '';
   @Input() post!: Post;
 
-  constructor(private markdownService: MarkdownService) {}
+  constructor(
+    private markdownService: MarkdownService,
+    private supabase: SupabaseService
+  ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     if (!this.post) {
       throw Error('post is required');
     }
     this.postBody = this.markdownService.parse(this.post.body);
+    if (!this.post.image_url) return;
+    const res = await this.supabase.getFileUrl(
+      this.post.image_url?.split('post-images/')[1] || ''
+    );
+    this.imageUrl = res?.signedURL || '';
   }
 }

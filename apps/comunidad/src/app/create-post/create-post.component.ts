@@ -117,10 +117,7 @@ export class CreatePostComponent {
     this.file = file;
 
     const imgUrl = await this.uploadFile();
-    if (imgUrl) {
-      const url = (await this.supabase.getFileUrl(imgUrl)) || undefined;
-      this.post.image_url = url;
-    }
+    this.post.image_url = imgUrl || '';
   }
 
   saveToLocalStorage() {
