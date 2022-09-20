@@ -25,7 +25,7 @@ export class PostCardComponent implements OnInit {
     this.postBody = this.markdownService.parse(this.post.body);
     if (!this.post.image_url) return;
     const res = await this.supabase.getFileUrl(
-      this.post.image_url?.split('post-images/')[1] || ''
+      this.post.image_url?.split('post-images/')[1] || this.post.image_url
     );
     this.imageUrl = res?.signedURL || '';
   }
