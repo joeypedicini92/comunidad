@@ -63,6 +63,7 @@ export class DailyEntryComponent extends CreatePostComponent {
 
   async savePost() {
     this.isLoading = true;
+    if (!this.post.body) return;
     try {
       const result = await this.createPost();
       this.post.id = result?.id;
