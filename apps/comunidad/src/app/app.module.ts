@@ -26,7 +26,6 @@ import { PostPermissionInputComponent } from './post-permission-input/post-permi
 import { MarkdownModule } from 'ngx-markdown';
 import '@pwabuilder/pwainstall';
 import * as LogRocket from 'logrocket';
-import { FreeDrawComponent } from './free-draw/free-draw.component';
 LogRocket.init('k0mgyc/comunidaddies');
 
 @NgModule({
@@ -49,7 +48,6 @@ LogRocket.init('k0mgyc/comunidaddies');
     PublicProfileComponent,
     CreatePostComponent,
     PostPermissionInputComponent,
-    FreeDrawComponent,
   ],
   imports: [
     MarkdownModule.forRoot(),
