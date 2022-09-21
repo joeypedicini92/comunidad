@@ -23,6 +23,7 @@ export class PostCardComponent implements OnInit {
       throw Error('post is required');
     }
     this.postBody = this.markdownService.parse(this.post.body);
+    this.postBody = this.postBody.replace(/&#226;&#8364;&#8482;/g, "'"); // cause i was dumb and imported the wrong encoded text
     if (!this.post.image_url) return;
     const res = await this.supabase.getFileUrl(
       this.post.image_url?.split('post-images/')[1] || this.post.image_url
