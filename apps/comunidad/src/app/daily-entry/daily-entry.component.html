@@ -14,20 +14,7 @@
   }
   ```
 -->
-<!-- <div class=" border-gray-200 pb-5 flex">
-  <div *ngIf="post.body_permission !== 0">
-    <h3 class="text-lg font-medium leading-6 text-gray-900">Email Recipients</h3>
-    <p class="mt-2 max-w-4xl text-sm text-gray-500 pb-5">Below are your contacts who will receive an email of your post. Update your contacts <a href="/contacts">here.</a></p>
-    <comunidad-pill-list #selectedContacts [items]="contacts" [display]="'name'"></comunidad-pill-list>
-  </div>
-  <comunidad-post-permission-input [preselectedPermission]="post.body_permission || 10"
-    class="hidden lg:block ml-auto mt-auto"
-    (changePermissionLevel)="onChangePermissionLevel($event)"></comunidad-post-permission-input>
-</div>
-<comunidad-post-permission-input [preselectedPermission]="post.body_permission || 10"
-  class="table lg:hidden ml-auto mt-auto"
-  (changePermissionLevel)="onChangePermissionLevel($event)"></comunidad-post-permission-input> -->
-<form class="relative" *ngIf="post">
+<form class="relative mb-10" *ngIf="post">
   <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden ">
     <label for="title" class="sr-only">Title</label>
     <input disabled [(ngModel)]="post.title" type="text" name="title" id="title" class="block w-full border-0 pt-2.5 text-lg font-medium placeholder-gray-500 focus:ring-0" placeholder="Title">
@@ -38,8 +25,6 @@
         rows="8"
         class="text-xl border-transparent focus:border-transparent focus:ring-0 border-none focus:border-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50"
         [placeholder]="writingPrompt"></textarea>
-      <img [hidden]="!file" id="uploadedImg" src="#" />
-      <img *ngIf="post.image_url && !file" [src]="post.image_url">
 
     <!-- Spacer element to match the height of the toolbar -->
     <div aria-hidden="true">
@@ -52,7 +37,8 @@
   </div>
 
   <div class="absolute bottom-0 inset-x-px">
-    <div class="border-t border-gray-200 px-2 py-2 flex justify-between items-center space-x-3 sm:px-3">
+    <div
+      class="stupid-hack-to-make-equal-height border-t border-gray-200 px-2 py-2 flex justify-between items-center space-x-3 sm:px-3">
       <div class="flex">
         <button onclick="file_input.click();" type="button" class="-ml-2 -my-2 rounded-full px-3 py-2 inline-flex items-center text-left text-gray-400 group">
           <!-- Heroicon name: solid/paper-clip -->
@@ -69,3 +55,8 @@
     </div>
   </div>
 </form>
+
+<div *ngIf="post.title || post.body || post.image_url">
+  <h2>Preview</h2>
+  <comunidad-post-card [post]="post" [image]="post.image_url || ''" [body]="post.body"></comunidad-post-card>
+</div>

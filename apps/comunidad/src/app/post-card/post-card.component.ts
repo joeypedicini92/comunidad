@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Post, SupabaseService } from '../supabase/supabase.service';
 import { MarkdownService } from 'ngx-markdown';
 
@@ -8,10 +14,12 @@ import { MarkdownService } from 'ngx-markdown';
   providers: [MarkdownService],
   styleUrls: ['./post-card.component.scss'],
 })
-export class PostCardComponent implements OnInit {
+export class PostCardComponent implements OnInit, OnChanges {
   postBody = '';
   imageUrl = '';
   @Input() post!: Post;
+  @Input() image!: string;
+  @Input() body!: string;
 
   constructor(
     private markdownService: MarkdownService,
@@ -29,5 +37,13 @@ export class PostCardComponent implements OnInit {
       this.post.image_url?.split('post-images/')[1] || this.post.image_url
     );
     this.imageUrl = res?.signedURL || '';
+  }
+
+  async ngOnChanges(changes: SimpleChanges) {
+    if (changes['image']) {
+      await this.ngOnInit();
+    } else if (changes['body']) {
+      this.postBody = this.markdownService.parse(this.post.body);
+    }
   }
 }

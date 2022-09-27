@@ -15,7 +15,7 @@
   ```
 -->
 
-<form class="relative" *ngIf="post">
+<form class="relative mb-10" *ngIf="post">
   <div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden ">
     <label for="title" class="sr-only">Title</label>
     <input [(ngModel)]="post.title" type="text" name="title" id="title" class="block w-full border-0 pt-2.5 text-lg font-medium placeholder-gray-500 focus:ring-0" placeholder="Title">
@@ -26,8 +26,6 @@
       rows="12"
       class="text-xl border-transparent focus:border-transparent focus:ring-0 border-none focus:border-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50"
       [placeholder]="writingPrompt"></textarea>
-    <img [hidden]="!file" id="uploadedImg" src="#" />
-    <img [hidden]="!post.image_url" *ngIf="post.image_url && !file" [src]="post.image_url">
 
     <!-- Spacer element to match the height of the toolbar -->
     <div aria-hidden="true">
@@ -66,3 +64,8 @@
     </div>
   </div>
 </form>
+
+<div *ngIf="post.title || post.body || post.image_url">
+  <h2>Preview</h2>
+  <comunidad-post-card [post]="post" [image]="post.image_url || ''" [body]="post.body"></comunidad-post-card>
+</div>
